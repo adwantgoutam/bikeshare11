@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>BikeShareService</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Bike Share</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -48,7 +48,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>com.voldy.main.Application</start-class>
+		<start-class>com.project11.bikeshare.main.Application</start-class>
 		<java.version>1.7</java.version>
 	</properties>
 
