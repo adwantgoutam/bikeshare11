@@ -5,9 +5,7 @@ public class User {
 	String email_id;
 	String password;
 	String mobile_number;
-	String balance;
-	String start_time;
-	String end_time;
+	
 	public String getUser_name() {
 		return user_name;
 	}
@@ -32,25 +30,7 @@ public class User {
 	public void setMobile_number(String mobile_number) {
 		this.mobile_number = mobile_number;
 	}
-	public String getBalance() {
-		return balance;
-	}
-	public void setBalance(String balance) {
-		this.balance = balance;
-	}
-	public String getStart_time() {
-		return start_time;
-	}
-	public void setStart_time(String start_time) {
-		this.start_time = start_time;
-	}
-	public String getEnd_time() {
-		return end_time;
-	}
-	public void setEnd_time(String end_time) {
-		this.end_time = end_time;
-	}
-	
+		
 	
 	
 }
