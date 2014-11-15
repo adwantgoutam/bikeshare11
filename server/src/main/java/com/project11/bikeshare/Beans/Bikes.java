@@ -6,6 +6,13 @@ public class Bikes {
 	String isBikeAvailable;
 	String bike_id;
 	String accessCode;
+	Location location;
+	public Location getLocation() {
+		return location;
+	}
+	public void setLocation(Location location) {
+		this.location = location;
+	}
 	public String getUser_id() {
 		return user_id;
 	}

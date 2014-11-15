@@ -16,16 +16,16 @@ public class BikeShareDB {
 	protected DB bikeShareDB ;
 	protected Jongo jongo;
 	protected MongoCollection userCollection;
-	protected MongoCollection paymentDetailsCollection;
-	protected MongoCollection docksCollection;
+	protected MongoCollection bikesCollection;
+	protected MongoCollection rentDetailsCollection;
 	public BikeShareDB() {
 		 try {
 			mongoClient = new MongoClient(new MongoClientURI(mongoURIString));
 			bikeShareDB = mongoClient.getDB(bikeShareDBName);
 			jongo = new Jongo(bikeShareDB);
 			userCollection = jongo.getCollection("user");
-			paymentDetailsCollection = jongo.getCollection("payment_details");
-			docksCollection = jongo.getCollection("docks");
+			bikesCollection = jongo.getCollection("bikes");
+			rentDetailsCollection = jongo.getCollection("rent_details");
 			
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
