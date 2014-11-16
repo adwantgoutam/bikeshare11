@@ -7,6 +7,21 @@ public class Bikes {
 	String bike_id;
 	String accessCode;
 	Location location;
+	private String pincode;
+	private String bikeModel;
+	
+	public String getPincode() {
+		return pincode;
+	}
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
+	}
+	public String getBikeModel() {
+		return bikeModel;
+	}
+	public void setBikeModel(String bikeModel) {
+		this.bikeModel = bikeModel;
+	}
 	public Location getLocation() {
 		return location;
 	}

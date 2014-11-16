@@ -4,6 +4,7 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 import com.project11.bikeshare.Beans.User;
+import com.project11.bikeshare.Beans.UserContext;
 import com.project11.bikeshare.DBImpl.RegistrationDAO;
 import com.project11.bikeshare.util.BikeShareUtil;
 
@@ -11,11 +12,11 @@ import com.project11.bikeshare.util.BikeShareUtil;
 public class RegistrationService {
 	final RegistrationDAO registrationDAO = new RegistrationDAO();
 	private Random random = new SecureRandom();
-	public void registerUser(User user){
+	public void registerUser(UserContext userContext){
 		//change the business logic of user details
-		String passwordHash = BikeShareUtil.makePasswordHash(user.getPassword(), Integer.toString(random.nextInt()));
-		user.setPassword(passwordHash);
-		registrationDAO.registerUser(user);
+		/*String passwordHash = BikeShareUtil.makePasswordHash(user.getPassword(), Integer.toString(random.nextInt()));
+		user.setPassword(passwordHash);*/
+		registrationDAO.registerUser(userContext);
 	}
 
 }
