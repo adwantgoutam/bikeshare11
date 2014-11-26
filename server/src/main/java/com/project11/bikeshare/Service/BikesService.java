@@ -18,12 +18,12 @@ public class BikesService {
 	public List<Bikes> getLocations(Coordinates coordinates) throws UnknownHostException
 	{
 		List<Bikes> list=new BikesDAO().getLocations(coordinates);
-		System.out.println(list.size());
+		//System.out.println(list.size());
 		List<Bikes> newList=new ArrayList<Bikes>();
 		for(int i=0;i<list.size();i++)
 		{
 			Bikes b=list.get(i);
-			System.out.println(b.getIsBikeAvailable());
+			//System.out.println(b.getIsBikeAvailable());
 			if(b.getIsBikeAvailable().equals("yes"))
 			{
 				newList.add(b);

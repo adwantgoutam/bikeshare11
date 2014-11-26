@@ -33,6 +33,18 @@ public class BikeShareServiceController {
 		registrationService.registerUser(uc);
     	return "Successfully registered";
     }
+	
+	@RequestMapping(value="/login",method = RequestMethod.GET)
+	public String login(@RequestParam String user) throws UnknownHostException
+	{
+		Gson gson = new Gson();
+        User u=new RegistrationService().login(gson.fromJson(user, User.class));
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson1 = builder.create();
+        String str=gson1.toJson(u);
+		return str;
+	}
+	
 	@RequestMapping(value="/locations",method = RequestMethod.GET)
 	public String getLocations(@RequestParam String coordinates) throws UnknownHostException
 	{
@@ -44,6 +56,7 @@ public class BikeShareServiceController {
         GsonBuilder builder = new GsonBuilder();
         Gson gson1 = builder.create();
         String str=gson1.toJson(bl);
+        System.out.println("---"+str);
 		return str;
 	}
 	

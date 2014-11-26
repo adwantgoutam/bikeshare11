@@ -2,11 +2,11 @@ package com.project11.bikeshare.Beans;
 
 public class Bikes {
 	
-	String user_id;
-	String isBikeAvailable;
-	String bike_id;
-	String accessCode;
-	Location location;
+	private String user_id;
+	private String isBikeAvailable;
+	private String bike_id;
+	private String accessCode;
+	private Location location;
 	private String pincode;
 	private String bikeModel;
 	

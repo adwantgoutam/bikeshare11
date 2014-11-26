@@ -1,5 +1,6 @@
 package com.project11.bikeshare.Service;
 
+import java.net.UnknownHostException;
 import java.security.SecureRandom;
 import java.util.Random;
 
@@ -18,5 +19,13 @@ public class RegistrationService {
 		user.setPassword(passwordHash);*/
 		registrationDAO.registerUser(userContext);
 	}
+	
+	public User login(User user) throws UnknownHostException{
+		//change the business logic of user details
+		/*String passwordHash = BikeShareUtil.makePasswordHash(user.getPassword(), Integer.toString(random.nextInt()));
+		user.setPassword(passwordHash);*/
+		return registrationDAO.login(user.getUser_name());
+	}
+	
 
 }

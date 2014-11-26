@@ -20,14 +20,13 @@ public class BikesDAO{
 
 	public List<Bikes> getLocations(Coordinates coordinates) throws UnknownHostException
 	{
-		MongoClient client =
-	            new MongoClient(new ServerAddress("ds051160.mongolab.com",51160));
+		MongoClient client = new MongoClient(new ServerAddress("ds051160.mongolab.com",51160));
 		DB database = client.getDB("bikeshare");
 	    database.authenticate("bikeshare","bikeshare".toCharArray());
 	    DBCollection collection = database.getCollection("bikes");
 	    BasicDBList myLocation = new BasicDBList();
-		myLocation.put(1, Float.parseFloat(coordinates.getLatitude()));
-		myLocation.put(0, Float.parseFloat(coordinates.getLongitude()));
+		myLocation.put(1, Double.parseDouble(coordinates.getLatitude()));
+		myLocation.put(0, Double.parseDouble(coordinates.getLongitude()));
 		ArrayList<Bikes> list=new ArrayList<Bikes>();
 		DBCursor cursor= collection.find(
 	            new BasicDBObject("location",
@@ -35,28 +34,25 @@ public class BikesDAO{
 	                        new BasicDBObject("$geometry",
 	                                new BasicDBObject("type", "Point")
 	                                    .append("coordinates", myLocation))
-	                             .append("$maxDistance",  500)
+	                             .append("$maxDistance",  5000)
 	                        )
 	                )
 	            );
-		System.out.println("in dao");
-		//System.out.println(cursor.length());
 		while(cursor.hasNext())
 		{
-			System.out.println("in while");
+			//System.out.println("in while");
 			DBObject obj=cursor.next();
-			System.out.println(obj);
 			Bikes b=new Bikes();
 			b.setUser_id(String.valueOf(obj.get("user_id")));
 			b.setBike_id(String.valueOf(obj.get("bikeid")));
 			b.setAccessCode(String.valueOf(obj.get("accesscode")));
 			Location loc=new Location();
 			BasicDBObject location=(BasicDBObject) obj.get("location");
-			BasicDBList coordinate=(BasicDBList) location.get("coordinates");
+			BasicDBList coord1=(BasicDBList) location.get("coordinates");
 			Coordinates coord=new Coordinates();
-			coord.setLatitude(String.valueOf(coordinate.get(1)));
-			coord.setLatitude(String.valueOf(coordinate.get(0)));
-			loc.setCoordinates(coordinates);
+			coord.setLatitude(String.valueOf(coord1.get(1)));
+			coord.setLongitude(String.valueOf(coord1.get(0)));
+			loc.setCoordinates(coord);
 			b.setLocation(loc);
 			b.setIsBikeAvailable((String) obj.get("isbikeavailable"));
 			b.setPincode(String.valueOf(obj.get("pincode")));

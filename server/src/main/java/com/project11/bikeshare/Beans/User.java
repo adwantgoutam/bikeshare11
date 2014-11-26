@@ -5,7 +5,14 @@ public class User {
 	String email_id;
 	String password;
 	String mobile_number;
+	String ssn;
 	
+	public String getSsn() {
+		return ssn;
+	}
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
+	}
 	public String getUser_name() {
 		return user_name;
 	}
