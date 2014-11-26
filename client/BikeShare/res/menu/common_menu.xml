@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/mybikes"
+        android:title="@string/mybikes"/>
+    <item
+        android:id="@+id/myhistory"
+        android:title="@string/myhistory"/>
+    <item
+        android:id="@+id/myaccount"
+        android:title="@string/myaccount"/>
+</menu>

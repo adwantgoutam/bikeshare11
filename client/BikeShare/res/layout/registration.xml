@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <EditText
+        android:id="@+id/uname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="34dp"
+        android:ems="10"
+        android:hint="@string/user_name"
+        android:inputType="text" >
+
+        
+    </EditText>
+
+    <EditText
+        android:id="@+id/paswd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/uname"
+        android:layout_alignRight="@+id/uname"
+        android:layout_below="@+id/uname"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/mobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/paswd"
+        android:layout_below="@+id/paswd"
+        android:ems="10"
+    	android:hint="@string/mobile"
+        android:inputType="text" />
+
+    
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/uname"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="text" >
+		<requestFocus />
+		</EditText>
+
+    <CheckBox
+        android:id="@+id/isBike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mobile"
+        android:layout_below="@+id/mobile"
+        android:text="Register Bike?" />
+
+    <EditText
+        android:id="@+id/bikeModel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/bikeName"
+        android:layout_centerVertical="true"
+        android:ems="10"
+        android:hint="Bike Model"
+        android:inputType="text" 
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/register1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/bikeModel"
+        android:layout_below="@+id/bikeModel"
+        android:layout_marginRight="54dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/register" />
+
+    <EditText
+        android:id="@+id/bikeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/isBike"
+        android:layout_below="@+id/isBike"
+        android:ems="10"
+        android:inputType="text" 
+        android:hint="Bike Name"
+        android:visibility="invisible" />
+
+</RelativeLayout>
