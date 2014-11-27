@@ -27,6 +27,9 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter")
+        compile('com.twilio.sdk:twilio-java-sdk:3.4.6')
+        compile('org.mongodb:mongo-java-driver:2.11.0')
+                
     testCompile("junit:junit")
 }
 
