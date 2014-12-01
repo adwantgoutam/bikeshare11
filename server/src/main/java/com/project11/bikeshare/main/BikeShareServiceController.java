@@ -20,6 +20,7 @@ import com.project11.bikeshare.Beans.User;
 import com.project11.bikeshare.Beans.UserContext;
 import com.project11.bikeshare.Service.BikesService;
 import com.project11.bikeshare.Service.RegistrationService;
+import com.project11.bikeshare.DBImpl.MyAccountDAO;
 
 @RestController
 public class BikeShareServiceController {
@@ -59,5 +60,26 @@ public class BikeShareServiceController {
         System.out.println("---"+str);
 		return str;
 	}
-	
+    @RequestMapping(value="/my_account",method = RequestMethod.GET)
+    public String getMyAccount(@RequestParam String username) throws UnknownHostException
+    {
+        Gson gson = new Gson();
+        User u = new MyAccountDAO().getUserFromDB(username);
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson1 = builder.create();
+        String str=gson1.toJson(u);
+        return str;
+    }
+
+
+    @RequestMapping(value="/edit_my_account",method = RequestMethod.PUT)
+    public String editMyAccount(@RequestParam String user) {
+        Gson gson = new Gson();
+        User u=gson.fromJson(user, User.class);
+        new MyAccountDAO().updateAccount(u);
+        return "Successfully updated";
+    }
+
+
+
 }
