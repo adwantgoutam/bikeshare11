@@ -9,6 +9,8 @@ public class Bikes {
 	private Location location;
 	private String pincode;
 	private String bikeModel;
+	private String start_time;
+	private String end_time;
 	
 	public String getPincode() {
 		return pincode;
