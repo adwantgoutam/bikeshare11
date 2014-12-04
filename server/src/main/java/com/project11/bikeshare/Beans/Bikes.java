@@ -9,7 +9,21 @@ public class Bikes {
 	private Location location;
 	private String pincode;
 	private String bikeModel;
+	private String start_time;
+	private String end_date;
 	
+	public String getStart_time() {
+		return start_time;
+	}
+	public void setStart_time(String start_time) {
+		this.start_time = start_time;
+	}
+	public String getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
+	}
 	public String getPincode() {
 		return pincode;
 	}
