@@ -49,6 +49,7 @@ public class BikeShareServiceController {
 	@RequestMapping(value="/locations",method = RequestMethod.GET)
 	public String getLocations(@RequestParam String coordinates) throws UnknownHostException
 	{
+		
 		Gson gson = new Gson();
         Coordinates coord=gson.fromJson(coordinates, Coordinates.class);
         List<Bikes> list=new BikesService().getLocations(coord);
