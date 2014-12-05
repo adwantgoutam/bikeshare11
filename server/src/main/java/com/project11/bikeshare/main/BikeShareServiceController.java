@@ -80,6 +80,12 @@ public class BikeShareServiceController {
         new MyAccountDAO().updateAccount(u);
         return "Successfully updated";
     }
+    
+    public String OfflineMode(@RequestParam String From,@RequestParam String Body) {
+        
+        return "Successfully updated";
+    }
+    
 
 
 
