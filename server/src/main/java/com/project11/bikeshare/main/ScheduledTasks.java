@@ -19,7 +19,6 @@ import com.twilio.sdk.TwilioRestException;
 @EnableScheduling
 public class ScheduledTasks {
 
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     @Scheduled(fixedRate = 300000)
     public void NotifyUser() throws TwilioRestException, UnknownHostException{

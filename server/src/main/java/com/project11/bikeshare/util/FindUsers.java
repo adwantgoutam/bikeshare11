@@ -28,10 +28,8 @@ public class FindUsers {
 	    BasicDBObject query = new BasicDBObject("end_time", new BasicDBObject("$lt",String.valueOf(curr_date.getTime())))
         						.append("end_time", new BasicDBObject("$gt",String.valueOf(curr_date.getTime()-900000)))
         						.append("isnotificationreceived","no");
-	    System.out.println(query);
 	    DBCursor cursor = collection.find(query);
 	    ArrayList<User> list=new ArrayList<User>();
-	    System.out.println(cursor.size());
 	    while(cursor.hasNext())
 		{
 			//System.out.println("in while");
@@ -52,11 +50,9 @@ public class FindUsers {
 				collection.save(obj);
 				list.add(user);
 				
-			}
-		    
-			
+			}	
 		}
-		
+	    client.close();
 		return list;
 
 

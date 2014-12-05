@@ -20,11 +20,8 @@ public class RegistrationService {
 		registrationDAO.registerUser(userContext);
 	}
 	
-	public User login(User user) throws UnknownHostException{
-		//change the business logic of user details
-		/*String passwordHash = BikeShareUtil.makePasswordHash(user.getPassword(), Integer.toString(random.nextInt()));
-		user.setPassword(passwordHash);*/
-		return registrationDAO.login(user.getUser_name());
+	public User login(String user) throws UnknownHostException{
+		return registrationDAO.login(user);
 	}
 	
 

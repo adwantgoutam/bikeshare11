@@ -39,8 +39,8 @@ public class RegistrationDAO extends BikeShareDB{
 		MongoClient client = new MongoClient(new ServerAddress("ds051160.mongolab.com",51160));
 		DB database = client.getDB("bikeshare");
 	    database.authenticate("bikeshare","bikeshare".toCharArray());
-	    DBCollection collection = database.getCollection("bikes");
-	    BasicDBObject query = new BasicDBObject("user_name",user);
+	    DBCollection collection = database.getCollection("user");
+	    BasicDBObject query = new BasicDBObject("username",user);
 	    DBCursor cursor = collection.find(query);
 	    User u=new User();
 	    while(cursor.hasNext())

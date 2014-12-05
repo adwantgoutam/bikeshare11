@@ -36,14 +36,14 @@ public class BikeShareServiceController {
     }
 	
 	@RequestMapping(value="/login",method = RequestMethod.GET)
-	public String login(@RequestParam String user) throws UnknownHostException
+	public String login(@RequestParam String user_id) throws UnknownHostException
 	{
 		Gson gson = new Gson();
-        User u=new RegistrationService().login(gson.fromJson(user, User.class));
+		User u=new RegistrationService().login(user_id);
         GsonBuilder builder = new GsonBuilder();
         Gson gson1 = builder.create();
         String str=gson1.toJson(u);
-		return str;
+        return str;
 	}
 	
 	@RequestMapping(value="/locations",method = RequestMethod.GET)
