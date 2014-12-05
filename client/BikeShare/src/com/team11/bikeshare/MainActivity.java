@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.team11.beans.GlobalClass;
 import com.team11.beans.User;
 
 import android.os.Bundle;
@@ -50,22 +51,20 @@ public class MainActivity extends Activity {
         	AsyncHttpClient client = new AsyncHttpClient();
         	RequestParams params=new RequestParams();
     		params.put("user_id", username.getText().toString());
-    		Intent in = new Intent().setClass(getApplicationContext(), Home.class);
-			//in.putExtra("username",username.getText().toString());
-			startActivity(in);
-    		/*client.get("http://10.0.0.9:8080/login",params, new AsyncHttpResponseHandler(){
+    		client.get("http://10.185.218.96:8080/login",params, new AsyncHttpResponseHandler(){
     			
     			public void onSuccess(int statuscode,String response)
     			{
-    				Toast.makeText(getApplicationContext(), statuscode+"Success", Toast.LENGTH_LONG).show();
-    				Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();	
     				Gson gson = new Gson();
     		        User u=gson.fromJson(response, User.class);
+    		        System.out.println(username.getText().toString());
+    		        System.out.println(password.getText().toString());
     		        
-        				if(u.getUser_name().equals(username) && u.getPassword().equals(password) )
+        				if(u.getUser_name().equals(username.getText().toString()) && u.getPassword().equals(password.getText().toString()))
     					{
+        					final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+        					globalVariable.setUsername(username.getText().toString());
         					Intent in = new Intent().setClass(getApplicationContext(), Home.class);
-        					in.putExtra("username",username.getText().toString());
         					startActivity(in);
        					}
     					else
@@ -76,7 +75,7 @@ public class MainActivity extends Activity {
     			}
     			
     		}
-    		);*/
+    		);
          }
     };
 

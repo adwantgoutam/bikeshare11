@@ -82,7 +82,7 @@ public class ShowBikeLocations extends CommonMenu implements OnMarkerClickListen
         Gson gson1 = builder.create();
         String str=gson1.toJson(coordinates);
 		params.put("coordinates", str);
-		client.get("http://10.189.32.118:8080/locations",params, new AsyncHttpResponseHandler(){
+		client.get("http://192.16856.1:8080/locations",params, new AsyncHttpResponseHandler(){
 			public void onSuccess(int statuscode,String response)
 			{
 				Gson gson = new Gson();
