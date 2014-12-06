@@ -16,9 +16,15 @@ import com.google.gson.GsonBuilder;
 import com.project11.bikeshare.Beans.Bikes;
 import com.project11.bikeshare.Beans.BikesList;
 import com.project11.bikeshare.Beans.Coordinates;
+import com.project11.bikeshare.Beans.RentDetails;
 import com.project11.bikeshare.Beans.User;
 import com.project11.bikeshare.Beans.UserContext;
+import com.project11.bikeshare.DBImpl.BikeConfirmationDAO;
+import com.project11.bikeshare.DBImpl.MyAccountDAO;
+import com.project11.bikeshare.DBImpl.MyHistoryDAO;
+import com.project11.bikeshare.Service.BikeConfirmationService;
 import com.project11.bikeshare.Service.BikesService;
+import com.project11.bikeshare.Service.MyHistoryService;
 import com.project11.bikeshare.Service.RegistrationService;
 import com.project11.bikeshare.DBImpl.MyAccountDAO;
 
@@ -81,7 +87,30 @@ public class BikeShareServiceController {
         return "Successfully updated";
     }
     
-    public String OfflineMode(@RequestParam String From,@RequestParam String Body) {
+	    //Used for my history
+    @RequestMapping(value="/get_my_history",method = RequestMethod.GET)
+    public String getMyHistory(@RequestParam String user_id) {
+        List<RentDetails> rentDetailsList = new MyHistoryService().getMyHistory(user_id);
+        Gson gson = new Gson();
+        String rentDetailsListJson = gson.toJson(rentDetailsList);
+        return rentDetailsListJson;
+    }
+    
+    //used to confirm the rent thus the marker disappears from map
+    @RequestMapping(value="/confirm_rent",method = RequestMethod.POST)
+    public String confirmRenting(@RequestParam String bike_id) {
+    	new BikeConfirmationService().confirmRent(bike_id);
+        return null;
+    }
+    
+	
+	
+	
+	
+	
+	
+	
+	public String OfflineMode(@RequestParam String From,@RequestParam String Body) {
         
         return "Successfully updated";
     }
