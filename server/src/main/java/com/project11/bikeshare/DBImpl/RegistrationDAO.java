@@ -29,8 +29,8 @@ public class RegistrationDAO extends BikeShareDB{
 	public void registerUser(UserContext userContext){
 		//save this user in mongo
 		System.out.println("Inserting user");
-		userCollection.save(userContext.getUser());
-		bikesCollection.save(userContext.getBike());
+		userCollectionJongo.save(userContext.getUser());
+		bikesCollectionJongo.save(userContext.getBike());
 		
 		
 	}

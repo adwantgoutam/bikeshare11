@@ -87,7 +87,7 @@ public class BikeShareServiceController {
         return "Successfully updated";
     }
     
-	    //Used for my history
+    //Used for my history
     @RequestMapping(value="/get_my_history",method = RequestMethod.GET)
     public String getMyHistory(@RequestParam String user_id) {
         List<RentDetails> rentDetailsList = new MyHistoryService().getMyHistory(user_id);
@@ -98,9 +98,9 @@ public class BikeShareServiceController {
     
     //used to confirm the rent thus the marker disappears from map
     @RequestMapping(value="/confirm_rent",method = RequestMethod.POST)
-    public String confirmRenting(@RequestParam String bike_id) {
-    	new BikeConfirmationService().confirmRent(bike_id);
-        return null;
+    public String confirmRenting(@RequestParam String bike_id,@RequestParam String user_id) {
+    	new BikeConfirmationService().confirmRent(bike_id,user_id);
+        return "success";
     }
     
 	

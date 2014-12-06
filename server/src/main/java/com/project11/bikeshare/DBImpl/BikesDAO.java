@@ -58,7 +58,7 @@ public class BikesDAO{
 			b.setPincode(String.valueOf(obj.get("pincode")));
 			b.setBikeModel(String.valueOf(obj.get("bike_model")));
 			b.setStart_time(String.valueOf(obj.get("start_time")));
-			b.setEnd_date(String.valueOf(obj.get("end_time")));
+			b.setEnd_time(String.valueOf(obj.get("end_time")));
 	    	list.add(b);
 		}
 		
