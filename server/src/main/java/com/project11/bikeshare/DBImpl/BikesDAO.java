@@ -11,12 +11,15 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.ServerAddress;
 import com.project11.bikeshare.Beans.Bikes;
 import com.project11.bikeshare.Beans.Coordinates;
 import com.project11.bikeshare.Beans.Location;
 
-public class BikesDAO{
+public class BikesDAO extends BikeShareDB{
+
+	private Class<Object> Bikes = null;
 
 	public List<Bikes> getLocations(Coordinates coordinates) throws UnknownHostException
 	{
@@ -65,5 +68,30 @@ public class BikesDAO{
 		return list;
 
 
+	}
+	public Bikes getBikeDetails(String bid) throws UnknownHostException
+	{
+		//Bikes b = new Bikes();
+		//MongoClientURI uri  = new MongoClientURI("mongodb://bikeshare:bikeshare@ds051160.mongolab.com:51160/bikeshare"); 
+		//MongoClient client = new MongoClient(uri);
+		//DB db = client.getDB("bikeshare");
+		//DBCollection coll = db.getCollection("bikes");
+		//BasicDBObject query = new BasicDBObject("bikeid",bid);
+		//bikesCollection.find("{bikeid:"+ bid+"}");
+		//DBCursor cursor = coll.find(query);
+		Bikes bike = bikesCollectionJongo.findOne("{bike_id:'"+ bid+"'}").projection("{_id: 0,location:0}").as(Bikes.class);
+		/*
+		try {
+			   while(cursor.hasNext() ) {
+				   System.out.println("entered");
+				   DBObject obj = cursor.next();
+				   b.setAccessCode(obj.get("accesscode"));
+				   
+			   }
+			} finally {
+			   cursor.close();
+			}
+			*/
+		return bike;
 	}
 }

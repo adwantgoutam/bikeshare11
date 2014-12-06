@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.project11.bikeshare.Beans.User;
 import com.project11.bikeshare.Beans.UserContext;
+import com.project11.bikeshare.Beans.UserFeedback;
 import com.project11.bikeshare.DBImpl.RegistrationDAO;
 import com.project11.bikeshare.util.BikeShareUtil;
 
@@ -22,6 +23,12 @@ public class RegistrationService {
 	
 	public User login(String user) throws UnknownHostException{
 		return registrationDAO.login(user);
+	}
+
+	public void registerFeedback(UserFeedback uf) {
+		// TODO Auto-generated method stub
+		 registrationDAO.feedback(uf);
+		
 	}
 	
 

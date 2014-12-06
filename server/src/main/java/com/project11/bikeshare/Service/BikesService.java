@@ -4,7 +4,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import com.project11.bikeshare.Beans.BikeContext;
 
 
 import org.neo4j.cypher.internal.compiler.v2_1.ast.rewriters.isolateAggregation;
@@ -31,5 +31,9 @@ public class BikesService {
 		}
 		return newList;
 	}
-
+	
+	public Bikes getBikeDetails(String bike_id) throws UnknownHostException{
+		
+		return new BikesDAO().getBikeDetails(bike_id);
+}
 }

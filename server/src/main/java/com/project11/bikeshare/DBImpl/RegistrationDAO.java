@@ -23,6 +23,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
 import com.project11.bikeshare.Beans.User;
 import com.project11.bikeshare.Beans.UserContext;
+import com.project11.bikeshare.Beans.UserFeedback;
 
 public class RegistrationDAO extends BikeShareDB{
 
@@ -51,6 +52,12 @@ public class RegistrationDAO extends BikeShareDB{
 	    }
 	     return u;		
 		
+	}
+
+	public void feedback(UserFeedback uf) {
+		// TODO Auto-generated method stub
+		System.out.println("Inserting feedback");
+		 feedbackCollectionJongo.save(uf);
 	}
 
 }

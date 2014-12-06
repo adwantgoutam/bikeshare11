@@ -27,6 +27,7 @@ import com.project11.bikeshare.Service.BikesService;
 import com.project11.bikeshare.Service.MyHistoryService;
 import com.project11.bikeshare.Service.RegistrationService;
 import com.project11.bikeshare.DBImpl.MyAccountDAO;
+import com.project11.bikeshare.Beans.UserFeedback;
 
 @RestController
 public class BikeShareServiceController {
@@ -85,6 +86,30 @@ public class BikeShareServiceController {
         User u=gson.fromJson(user, User.class);
         new MyAccountDAO().updateAccount(u);
         return "Successfully updated";
+    }
+	
+	 @RequestMapping(value="/getBike",method = RequestMethod.GET)
+	public String getLendBikes(@RequestParam String bikeid) throws UnknownHostException
+	{
+	  //  BikeContext bc= new BikeContext();
+        BikesService bs = new BikesService();
+    	Bikes bb = new Bikes();
+       // bc=bs.getBikeDetails(bikeid);
+    	 bb=bs.getBikeDetails(bikeid);
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson1 = builder.create();
+        //String str=gson1.toJson(bc);
+        String str=gson1.toJson(bb);
+		return str;
+	}
+    
+    @RequestMapping(value="/feedback",method = RequestMethod.POST)
+    public String getUserFeedback(@RequestParam String userFeedbackStr) {
+		System.out.println("in feedback");
+		Gson gson = new Gson();
+		UserFeedback uf=gson.fromJson(userFeedbackStr, UserFeedback.class);
+		registrationService.registerFeedback(uf);
+    	return "Successfully submitted feedback";
     }
     
     //Used for my history
