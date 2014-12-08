@@ -12,8 +12,9 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
 import com.project11.bikeshare.Beans.Bikes;
+import com.project11.bikeshare.Beans.User;
 
-public class OfflineModeDAO {
+public class OfflineModeDAO extends BikeShareDB{
 	
 	public List<Bikes> findByZipCode(String zipcode) throws UnknownHostException
 	{
@@ -59,6 +60,19 @@ public class OfflineModeDAO {
 	    
 	    return isValid;
 		
+	}
+
+	public User getUser(String user_id) {
+		User u =userCollectionJongo.findOne("{user_id:'"+user_id+"'}").as(User.class);
+		return u;
+	}
+	
+	public boolean authUser(String user_id,String password) {
+		User u =userCollectionJongo.findOne("{username:'"+user_id+"'},{password:'"+password+"'}").as(User.class);
+		if(u!=null && u.getPassword().equals(password) && (u.getUsername().equals(user_id))){
+			return Boolean.TRUE;
+		}
+		return Boolean.FALSE;
 	}
 
 }

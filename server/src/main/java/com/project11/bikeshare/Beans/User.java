@@ -1,23 +1,26 @@
 package com.project11.bikeshare.Beans;
 
 public class User {
-	String user_name;
+	String username;
 	String email_id;
 	String password;
 	String mobile_number;
 	String ssn;
-	
+
 	public String getSsn() {
 		return ssn;
 	}
+
 	public void setSsn(String ssn) {
 		this.ssn = ssn;
 	}
-	public String getUser_name() {
-		return user_name;
+
+	public String getUsername() {
+		return username;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getEmail_id() {
 		return email_id;

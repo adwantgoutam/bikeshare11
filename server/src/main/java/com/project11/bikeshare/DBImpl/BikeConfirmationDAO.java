@@ -10,12 +10,13 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
 import com.project11.bikeshare.Beans.Bikes;
+import com.project11.bikeshare.Beans.RentDetails;
 import com.project11.bikeshare.Beans.User;
 
 public class BikeConfirmationDAO extends BikeShareDB{
 
 	public Bikes confirmRent(String bike_id) {
-		bikesCollectionJongo.update("{bikeid: '"+bike_id+"'}").with("{isBikeAvailable: 'no'}");
+		bikesCollectionJongo.update("{bikeid: '"+bike_id+"'}").with("{$set:{isbikeavailable: 'no'}}");
 		Bikes bikes= bikesCollectionJongo.findOne("{bikeid: '"+bike_id+"'}").as(Bikes.class);
 	return bikes;
 	}
@@ -45,6 +46,11 @@ public class BikeConfirmationDAO extends BikeShareDB{
 	    }
 	     return b;		
 
+	}
+
+	public RentDetails updateRentDetails(String bike_id,String username) {
+		rentDetailsCollectionJongo.update("{username: '"+username+"'}").with("{$set:{bikeid: '"+bike_id+"'},{received:'nyr'}}");
+		return rentDetailsCollectionJongo.findOne("{bikeid: '"+bike_id+"'},{received:'nyr'}").as(RentDetails.class);
 	}
 	
 

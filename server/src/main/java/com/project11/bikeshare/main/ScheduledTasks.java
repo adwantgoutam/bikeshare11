@@ -34,7 +34,7 @@ public class ScheduledTasks {
         	for(int i=0;i<list.size();i++)
         	{
         		User user=list.get(i);
-        		String message="Hello "+user.getUser_name()+", Your rental time is about to end in less than 15 minutes.Kindly return the bike to the owner.Hope you enjoyed our service.Thanks :)";
+        		String message="Hello "+user.getUsername()+", Your rental time is about to end in less than 15 minutes.Kindly return the bike to the owner.Hope you enjoyed our service.Thanks :)";
         		new TwilioMessage().sendMessage(user.getMobile_number(),message);
         		
         	}

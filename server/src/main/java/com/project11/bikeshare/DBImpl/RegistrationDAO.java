@@ -47,7 +47,7 @@ public class RegistrationDAO extends BikeShareDB{
 	    while(cursor.hasNext())
 	    {
 	    	DBObject obj=cursor.next();
-	    	u.setUser_name(String.valueOf(obj.get("username")));
+	    	u.setUsername(String.valueOf(obj.get("username")));
 	    	u.setPassword(String.valueOf(obj.get("password")));
 	    }
 	     return u;		
@@ -59,5 +59,4 @@ public class RegistrationDAO extends BikeShareDB{
 		System.out.println("Inserting feedback");
 		 feedbackCollectionJongo.save(uf);
 	}
-
 }

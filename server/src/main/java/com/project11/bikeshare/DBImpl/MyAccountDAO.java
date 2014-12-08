@@ -20,7 +20,7 @@ public class MyAccountDAO extends BikeShareDB {
         {
 
             DBObject obj=cursor.next();
-            u.setUser_name(String.valueOf(obj.get("username")));
+            u.setUsername(String.valueOf(obj.get("username")));
             u.setPassword(String.valueOf(obj.get("password")));
             u.setEmail_id(String.valueOf(obj.get("email")));
             u.setMobile_number(String.valueOf(obj.get("mobilenumber")));
@@ -41,7 +41,7 @@ public class MyAccountDAO extends BikeShareDB {
             database.authenticate("bikeshare","bikeshare".toCharArray());
 
             DBCollection user_collection = database.getCollection("user");
-            BasicDBObject query = new BasicDBObject("username",user.getUser_name());
+            BasicDBObject query = new BasicDBObject("username",user.getUsername());
             DBCursor cursor = user_collection.find(query);
             if (cursor.hasNext())
             {

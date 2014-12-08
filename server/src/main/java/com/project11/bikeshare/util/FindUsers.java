@@ -44,7 +44,7 @@ public class FindUsers {
 				User user=new User();
 				DBObject obj1=cursor1.next();
 				System.out.println(obj1);
-				user.setUser_name(String.valueOf(obj1.get("username")));
+				user.setUsername(String.valueOf(obj1.get("username")));
 				user.setMobile_number(String.valueOf(obj1.get("mobilenumber")));
 				obj.put("isnotificationreceived","yes");
 				collection.save(obj);

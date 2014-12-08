@@ -25,9 +25,11 @@ import com.project11.bikeshare.DBImpl.MyHistoryDAO;
 import com.project11.bikeshare.Service.BikeConfirmationService;
 import com.project11.bikeshare.Service.BikesService;
 import com.project11.bikeshare.Service.MyHistoryService;
+import com.project11.bikeshare.Service.OfflineModeService;
 import com.project11.bikeshare.Service.RegistrationService;
 import com.project11.bikeshare.DBImpl.MyAccountDAO;
 import com.project11.bikeshare.Beans.UserFeedback;
+import com.twilio.sdk.TwilioRestException;
 
 @RestController
 public class BikeShareServiceController {
@@ -138,19 +140,18 @@ public class BikeShareServiceController {
         return "success";
     }
     
-	
-	
-	
-	
-	
-	
-	
-	public String OfflineMode(@RequestParam String From,@RequestParam String Body) {
-        
-        return "Successfully updated";
+    @RequestMapping(value="/twilio_offline",method = RequestMethod.POST)
+    public String OfflineMode(@RequestParam String From,@RequestParam String Body) {
+    	try {
+			new OfflineModeService().offlineMode(From, Body);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TwilioRestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return "Successfully updated";
     }
-    
-
-
-
+  
 }
