@@ -27,7 +27,7 @@ public class FindUsers {
 	    Date curr_date=new Date();
 	    BasicDBObject query = new BasicDBObject("end_time", new BasicDBObject("$lt",String.valueOf(curr_date.getTime())))
         						.append("end_time", new BasicDBObject("$gt",String.valueOf(curr_date.getTime()-900000)))
-        						.append("isnotificationreceived","no");
+        						.append("isNotificationReceived","no");
 	    DBCursor cursor = collection.find(query);
 	    ArrayList<User> list=new ArrayList<User>();
 	    while(cursor.hasNext())
@@ -37,16 +37,16 @@ public class FindUsers {
 			RentDetails rent=new RentDetails();
 			String renter=String.valueOf(obj.get("user_id_renter"));
 			DBCollection collection1 = database.getCollection("user");
-			BasicDBObject query1=new BasicDBObject("username",renter);
+			BasicDBObject query1=new BasicDBObject("user_name",renter);
 			DBCursor cursor1=collection1.find(query1);
 			while(cursor1.hasNext())
 			{
 				User user=new User();
 				DBObject obj1=cursor1.next();
 				System.out.println(obj1);
-				user.setUsername(String.valueOf(obj1.get("username")));
-				user.setMobile_number(String.valueOf(obj1.get("mobilenumber")));
-				obj.put("isnotificationreceived","yes");
+				user.setUsername(String.valueOf(obj1.get("user_name")));
+				user.setMobile_number(String.valueOf(obj1.get("mobile_number")));
+				obj.put("isNotificationReceived","yes");
 				collection.save(obj);
 				list.add(user);
 				

@@ -47,8 +47,8 @@ public class BikesDAO extends BikeShareDB{
 			DBObject obj=cursor.next();
 			Bikes b=new Bikes();
 			b.setUser_id(String.valueOf(obj.get("user_id")));
-			b.setBike_id(String.valueOf(obj.get("bikeid")));
-			b.setAccessCode(String.valueOf(obj.get("accesscode")));
+			b.setBike_id(String.valueOf(obj.get("bike_id")));
+			b.setAccessCode(String.valueOf(obj.get("accessCode")));
 			Location loc=new Location();
 			BasicDBObject location=(BasicDBObject) obj.get("location");
 			BasicDBList coord1=(BasicDBList) location.get("coordinates");
@@ -57,9 +57,9 @@ public class BikesDAO extends BikeShareDB{
 			coord.setLongitude(String.valueOf(coord1.get(0)));
 			loc.setCoordinates(coord);
 			b.setLocation(loc);
-			b.setIsBikeAvailable((String) obj.get("isbikeavailable"));
+			b.setIsBikeAvailable((String) obj.get("isBikeAvailable"));
 			b.setPincode(String.valueOf(obj.get("pincode")));
-			b.setBikeModel(String.valueOf(obj.get("bike_model")));
+			b.setBikeModel(String.valueOf(obj.get("bikeModel")));
 			b.setStart_time(String.valueOf(obj.get("start_time")));
 			b.setEnd_time(String.valueOf(obj.get("end_time")));
 	    	list.add(b);

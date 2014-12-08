@@ -31,17 +31,17 @@ public class BikeConfirmationDAO extends BikeShareDB{
 		DB database = client.getDB("bikeshare");
 	    database.authenticate("bikeshare","bikeshare".toCharArray());
 	    DBCollection collection = database.getCollection("bikes");
-	    BasicDBObject query = new BasicDBObject("bikeid",bikeid);
+	    BasicDBObject query = new BasicDBObject("bike_id",bikeid);
 	    DBCursor cursor = collection.find(query);
 	    Bikes b=new Bikes();
 	    while(cursor.hasNext())
 	    {
 	    	DBObject obj=cursor.next();
-	    	b.setBike_id(String.valueOf(obj.get("bikeid")));
-	    	b.setBikeModel(String.valueOf(obj.get("bike_model")));
+	    	b.setBike_id(String.valueOf(obj.get("bike_id")));
+	    	b.setBikeModel(String.valueOf(obj.get("bikeModel")));
 	    	b.setStart_time(String.valueOf(obj.get("start_time")));
 	    	b.setEnd_time(String.valueOf(obj.get("end_time")));
-	    	b.setAccessCode(String.valueOf(obj.get("accesscode")));
+	    	b.setAccessCode(String.valueOf(obj.get("accessCode")));
 	    	
 	    }
 	     return b;		

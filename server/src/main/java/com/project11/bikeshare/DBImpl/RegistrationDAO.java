@@ -41,13 +41,13 @@ public class RegistrationDAO extends BikeShareDB{
 		DB database = client.getDB("bikeshare");
 	    database.authenticate("bikeshare","bikeshare".toCharArray());
 	    DBCollection collection = database.getCollection("user");
-	    BasicDBObject query = new BasicDBObject("username",user);
+	    BasicDBObject query = new BasicDBObject("user_name",user);
 	    DBCursor cursor = collection.find(query);
 	    User u=new User();
 	    while(cursor.hasNext())
 	    {
 	    	DBObject obj=cursor.next();
-	    	u.setUser_name(String.valueOf(obj.get("username")));
+	    	u.setUsername(String.valueOf(obj.get("user_name")));
 	    	u.setPassword(String.valueOf(obj.get("password")));
 	    }
 	     return u;		
