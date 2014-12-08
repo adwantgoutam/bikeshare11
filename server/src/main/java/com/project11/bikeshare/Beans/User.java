@@ -1,7 +1,7 @@
 package com.project11.bikeshare.Beans;
 
 public class User {
-	String username;
+	String user_name;
 	String email_id;
 	String password;
 	String mobile_number;
@@ -16,11 +16,11 @@ public class User {
 	}
 
 	public String getUsername() {
-		return username;
+		return user_name;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.user_name = username;
 	}
 	public String getEmail_id() {
 		return email_id;
