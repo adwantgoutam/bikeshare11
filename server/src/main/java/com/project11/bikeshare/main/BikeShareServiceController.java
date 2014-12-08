@@ -88,7 +88,7 @@ public class BikeShareServiceController {
         return "Successfully updated";
     }
 	
-	 @RequestMapping(value="/getBike",method = RequestMethod.GET)
+	@RequestMapping(value="/getBike",method = RequestMethod.GET)
 	public String getLendBikes(@RequestParam String bikeid) throws UnknownHostException
 	{
 	  //  BikeContext bc= new BikeContext();
@@ -101,6 +101,16 @@ public class BikeShareServiceController {
         //String str=gson1.toJson(bc);
         String str=gson1.toJson(bb);
 		return str;
+	}
+	
+	@RequestMapping(value="/bike",method = RequestMethod.GET)
+	 public String findBike(@RequestParam String bikeid) throws UnknownHostException
+	{
+			Bikes bike=new BikeConfirmationDAO().findBike(bikeid);
+			GsonBuilder builder = new GsonBuilder();
+	        Gson gson = builder.create();
+	        String str=gson.toJson(bike);
+			return str;
 	}
     
     @RequestMapping(value="/feedback",method = RequestMethod.POST)

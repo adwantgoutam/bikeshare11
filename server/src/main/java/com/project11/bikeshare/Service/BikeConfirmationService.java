@@ -1,5 +1,8 @@
 package com.project11.bikeshare.Service;
 
+import java.net.UnknownHostException;
+
+
 import com.project11.bikeshare.Beans.Bikes;
 import com.project11.bikeshare.Beans.User;
 import com.project11.bikeshare.DBImpl.BikeConfirmationDAO;
@@ -13,6 +16,11 @@ public class BikeConfirmationService {
 		Bikes bike = bikeConfirmationDAO.confirmRent(bike_id);
 		User user = bikeConfirmationDAO.findUser(user_id);
 		sendUserConfirmationTextMessage(user,bike);
+	}
+	
+	public Bikes findBike(String bikeid) throws UnknownHostException
+	{
+		return new BikeConfirmationDAO().findBike(bikeid);
 	}
 	
 	public void sendUserConfirmationTextMessage(User user,Bikes bike){
