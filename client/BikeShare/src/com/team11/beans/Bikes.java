@@ -54,6 +54,13 @@ public class Bikes {
 	public void setAccessCode(String accessCode) {
 		this.accessCode = accessCode;
 	}
+	public String getStartTime() {
+		return start_time;
+	}
+
+	public String getEndTime() {
+		return end_time;
+	}
 
 
 }

@@ -72,10 +72,10 @@ public class BikeShareServiceController {
 		return str;
 	}
     @RequestMapping(value="/my_account",method = RequestMethod.GET)
-    public String getMyAccount(@RequestParam String username) throws UnknownHostException
+    public String getMyAccount(@RequestParam String user_name) throws UnknownHostException
     {
         Gson gson = new Gson();
-        User u = new MyAccountDAO().getUserFromDB(username);
+        User u = new MyAccountDAO().getUserFromDB(user_name);
         GsonBuilder builder = new GsonBuilder();
         Gson gson1 = builder.create();
         String str=gson1.toJson(u);
