@@ -48,8 +48,9 @@ public class BikeConfirmationDAO extends BikeShareDB{
 
 	}
 
+	//when rent is confirmed change the renter id.
 	public RentDetails updateRentDetails(String bike_id,String username) {
-		rentDetailsCollectionJongo.update("{username: '"+username+"'}").with("{$set:{bikeid: '"+bike_id+"'},{received:'nyr'}}");
+		rentDetailsCollectionJongo.update("{user_id_renter: '"+username+"'}").with("{$set:{bikeid: '"+bike_id+"'},{received:'nyr'}}");
 		return rentDetailsCollectionJongo.findOne("{bikeid: '"+bike_id+"'},{received:'nyr'}").as(RentDetails.class);
 	}
 	
