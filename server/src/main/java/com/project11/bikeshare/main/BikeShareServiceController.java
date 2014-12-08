@@ -52,6 +52,7 @@ public class BikeShareServiceController {
         GsonBuilder builder = new GsonBuilder();
         Gson gson1 = builder.create();
         String str=gson1.toJson(u);
+        System.out.println(str);
         return str;
 	}
 	
