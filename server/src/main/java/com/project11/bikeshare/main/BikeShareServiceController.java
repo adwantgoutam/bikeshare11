@@ -82,7 +82,7 @@ public class BikeShareServiceController {
     }
 
 
-    @RequestMapping(value="/edit_my_account",method = RequestMethod.PUT)
+    @RequestMapping(value="/edit_my_account",method = RequestMethod.POST)
     public String editMyAccount(@RequestParam String user) {
         Gson gson = new Gson();
         User u=gson.fromJson(user, User.class);
