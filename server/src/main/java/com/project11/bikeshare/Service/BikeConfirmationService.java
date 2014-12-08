@@ -40,6 +40,7 @@ public class BikeConfirmationService {
 			e.printStackTrace();
 		}
 	}
+
 	public void sendUserConfirmationTextMessage(User user,Bikes bike){
 		StringBuffer b = new StringBuffer("");
 		b.append("Access Code :"+bike.getAccessCode());
