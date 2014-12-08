@@ -3,18 +3,18 @@ package com.team11.beans;
 public class UserContext {
 	
 	private User user;
-	private Bikes bikes;
+	private Bikes bike;
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Bikes getBikes() {
-		return bikes;
+	public Bikes getBike() {
+		return bike;
 	}
-	public void setBikes(Bikes bikes) {
-		this.bikes = bikes;
+	public void setBikes(Bikes bike) {
+		this.bike = bike;
 	}
 	
 

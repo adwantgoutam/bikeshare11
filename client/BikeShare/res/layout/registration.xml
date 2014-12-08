@@ -52,24 +52,49 @@
 		<requestFocus />
 		</EditText>
 
-    <CheckBox
-        android:id="@+id/isBike"
+    <EditText
+        android:id="@+id/SSN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/mobile"
         android:layout_below="@+id/mobile"
-        android:text="Register Bike?" />
+        android:ems="10"
+        android:hint="SSN"
+        android:inputType="text"
+        android:visibility="visible" />
 
     <EditText
         android:id="@+id/bikeModel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/bikeName"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/bikeName"
+        android:layout_marginTop="15dp"
         android:ems="10"
         android:hint="Bike Model"
-        android:inputType="text" 
+        android:inputType="text"
         android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/bikeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/isBike"
+        android:layout_below="@+id/isBike"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:hint="Bike Name"
+        android:inputType="text"
+        android:visibility="invisible" />
+
+    <CheckBox
+        android:id="@+id/isBike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/SSN"
+        android:layout_below="@+id/SSN"
+        android:layout_marginTop="14dp"
+        android:text="Register Bike?" />
 
     <Button
         android:id="@+id/register1"
@@ -78,18 +103,7 @@
         android:layout_alignRight="@+id/bikeModel"
         android:layout_below="@+id/bikeModel"
         android:layout_marginRight="54dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="17dp"
         android:text="@string/register" />
-
-    <EditText
-        android:id="@+id/bikeName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/isBike"
-        android:layout_below="@+id/isBike"
-        android:ems="10"
-        android:inputType="text" 
-        android:hint="Bike Name"
-        android:visibility="invisible" />
 
 </RelativeLayout>
