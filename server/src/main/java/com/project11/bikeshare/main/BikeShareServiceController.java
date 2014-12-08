@@ -25,9 +25,11 @@ import com.project11.bikeshare.DBImpl.MyHistoryDAO;
 import com.project11.bikeshare.Service.BikeConfirmationService;
 import com.project11.bikeshare.Service.BikesService;
 import com.project11.bikeshare.Service.MyHistoryService;
+import com.project11.bikeshare.Service.OfflineModeService;
 import com.project11.bikeshare.Service.RegistrationService;
 import com.project11.bikeshare.DBImpl.MyAccountDAO;
 import com.project11.bikeshare.Beans.UserFeedback;
+import com.twilio.sdk.TwilioRestException;
 
 @RestController
 public class BikeShareServiceController {
@@ -88,7 +90,7 @@ public class BikeShareServiceController {
         return "Successfully updated";
     }
 	
-	 @RequestMapping(value="/getBike",method = RequestMethod.GET)
+	@RequestMapping(value="/getBike",method = RequestMethod.GET)
 	public String getLendBikes(@RequestParam String bikeid) throws UnknownHostException
 	{
 	  //  BikeContext bc= new BikeContext();
@@ -101,6 +103,16 @@ public class BikeShareServiceController {
         //String str=gson1.toJson(bc);
         String str=gson1.toJson(bb);
 		return str;
+	}
+	
+	@RequestMapping(value="/bike",method = RequestMethod.GET)
+	 public String findBike(@RequestParam String bikeid) throws UnknownHostException
+	{
+			Bikes bike=new BikeConfirmationDAO().findBike(bikeid);
+			GsonBuilder builder = new GsonBuilder();
+	        Gson gson = builder.create();
+	        String str=gson.toJson(bike);
+			return str;
 	}
     
     @RequestMapping(value="/feedback",method = RequestMethod.POST)
@@ -128,19 +140,18 @@ public class BikeShareServiceController {
         return "success";
     }
     
-	
-	
-	
-	
-	
-	
-	
-	public String OfflineMode(@RequestParam String From,@RequestParam String Body) {
-        
-        return "Successfully updated";
+    @RequestMapping(value="/twilio_offline",method = RequestMethod.POST)
+    public String OfflineMode(@RequestParam String From,@RequestParam String Body) {
+    	try {
+			new OfflineModeService().offlineMode(From, Body);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TwilioRestException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return "Successfully updated";
     }
-    
-
-
-
+  
 }

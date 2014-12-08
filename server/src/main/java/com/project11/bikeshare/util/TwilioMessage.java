@@ -25,6 +25,9 @@ public class TwilioMessage {
 	    // Build a filter for the MessageList
 	    List<NameValuePair> params = new ArrayList<NameValuePair>();
 	    String body=message;
+	    if(message!=null && message.length()==0){
+	    	body="Default Message Here";
+	    }
 	    params.add(new BasicNameValuePair("Body",body));
 	    params.add(new BasicNameValuePair("To",mobilenumber));
 	    params.add(new BasicNameValuePair("From", "+12015747858"));
