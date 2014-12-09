@@ -79,8 +79,8 @@ public class Registration extends Activity{
     		//user.setSsn(ssn.)
        		uc.setUser(user);
        		Bikes bike = new Bikes();
-       		bike.setIsBikeAvailable("Yes");
-       		bike.setPincode("95112");
+       		//bike.setIsBikeAvailable("Yes");
+       		//bike.setPincode("95112");
        		bike.setBike_id(bikeName.getText().toString());
        		bike.setBikeModel(bikeModel.getText().toString());
        		bike.setUser_id(user_name.getText().toString());
@@ -93,8 +93,8 @@ public class Registration extends Activity{
             params.put("userContext", str);
     		//DataObject obj = gson.fromJson(br, DataObject.class);
 
-    		//client.post("http://10.0.0.23:8080/register_user",params, new AsyncHttpResponseHandler(){
-            client.post("http://192.168.2.9:8080/register_user",params, new AsyncHttpResponseHandler(){
+    		client.post("http://10.0.0.23:8080/register_user",params, new AsyncHttpResponseHandler(){
+            //client.post("http://192.168.2.9:8080/register_user",params, new AsyncHttpResponseHandler(){
     			
     			public void onSuccess(int statuscode,String response)
     			{
