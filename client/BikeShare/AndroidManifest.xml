@@ -42,7 +42,10 @@
         <activity android:name="com.team11.bikeshare.ShowBikeLocations"/>
         <activity android:name="com.team11.bikeshare.CommonMenu"/>
         <activity android:name="com.team11.bikeshare.Home"/>
+        <activity android:name="com.team11.bikeshare.MyBikes"/>
         <activity android:name="com.team11.bikeshare.RegisterBike"/>
+        <activity android:name="com.team11.bikeshare.LendBike"/>
+        <activity android:name="com.team11.bikeshare.GotBikeRevoke"/>
         <meta-data
    		android:name="com.google.android.maps.v2.API_KEY"
    		android:value="AIzaSyBtmd5P9ceNadVKVo_4M4sO4EyN3V4alKw" />     

@@ -1,0 +1,103 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity" >
+
+    <requestFocus />
+
+    <EditText
+        android:id="@+id/bikeModel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/endTime"
+        android:layout_below="@+id/endTime"
+        android:editable="false"
+        android:ems="10" />
+
+    <Button
+        android:id="@+id/gotmybike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/revoke"
+        android:layout_below="@+id/revoke"
+        android:text="Got My Bike"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/revoke"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="   Revoke   "
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/startTime"
+        android:layout_alignBottom="@+id/startTime"
+        android:layout_alignRight="@+id/textView1"
+        android:text="Start Date" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/endTime"
+        android:layout_alignBottom="@+id/endTime"
+        android:layout_alignRight="@+id/textView2"
+        android:text="End Date" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/bikeModel"
+        android:layout_alignBottom="@+id/bikeModel"
+        android:layout_alignRight="@+id/textView4"
+        android:text="Bike Model" />
+
+    <EditText
+        android:id="@+id/startTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/accessCode"
+        android:layout_below="@+id/accessCode"
+        android:editable="false"
+        android:ems="10"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/endTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/startTime"
+        android:layout_below="@+id/startTime"
+        android:editable="false"
+        android:ems="10"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/accessCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/textView1"
+        android:editable="false"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/accessCode"
+        android:layout_alignBottom="@+id/accessCode"
+        android:layout_toLeftOf="@+id/revoke"
+        android:text="Access Code" />
+
+</RelativeLayout>

@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity" >
+
+    <requestFocus />
+
+    <EditText
+        android:id="@+id/endTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/startTime"
+        android:layout_marginLeft="34dp"
+        android:ems="10"
+        android:hint="@string/enddate"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/bikeModel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/endTime"
+        android:layout_below="@+id/endTime"
+        android:ems="10"
+        android:editable="false"
+        android:hint="@string/bike" />
+
+    <EditText
+        android:id="@+id/startTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/endTime"
+        android:layout_below="@+id/accessCode"
+        android:ems="10"
+        android:hint="@string/startdate"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/accessCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/startTime"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/accesscode">
+        <requestFocus />
+        </EditText>
+
+    <Button
+        android:id="@+id/lend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Lend" />
+
+</RelativeLayout>

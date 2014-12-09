@@ -12,4 +12,10 @@
 	<string name="mybikes">My Bikes</string>
 	<string name="myaccount">Account</string>
 	<string name="myhistory">History</string>
+	<string name="accesscode">Access Code</string>
+    <string name="startdate">Start: Date and Time</string>
+    <string name="starttime">Start Time</string>
+    <string name="enddate">End: Date and Time</string>
+    <string name="endtime">End Time</string>
+    <string name="bike">Bike Model</string>
 </resources>
