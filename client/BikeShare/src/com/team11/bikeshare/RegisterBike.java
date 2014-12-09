@@ -73,13 +73,19 @@ public class RegisterBike extends CommonMenu{
     			{
     				System.out.println("Response: "+response);
     				//Toast.makeText(getApplicationContext(), statuscode+"Success registration", Toast.LENGTH_LONG).show();
+    				if(response.contains("Success"))
+					{
+						//Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_LONG).show();
+						Intent in = new Intent().setClass(getApplicationContext(), Home.class);
+						String userid=username;
+						in.putExtra("userid", userid);
+						startActivity(in);
+					}		
+					else
+					{
+						Toast.makeText(getApplicationContext(), "Bike ID Exist! Please choose another BikeID.", Toast.LENGTH_LONG).show();
 
-    						//Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_LONG).show();
-    						Intent in = new Intent().setClass(getApplicationContext(), Home.class);
-    						String userid=username;
-    						in.putExtra("userid", userid);
-    						startActivity(in);
-    						
+					}	
 
     				
     			}

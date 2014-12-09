@@ -49,7 +49,11 @@ public class RegistrationDAO extends BikeShareDB{
 		if (userDetails==null)
 		{
 			System.out.println("Inside null");
-			userCollectionJongo.save(userContext.getUser());
+			if(!userContext.getUser().getUsername().equals(""))
+			{
+				
+			  userCollectionJongo.save(userContext.getUser());
+			}
 			/*
 			BasicDBObject doc=new BasicDBObject();
 			
@@ -61,7 +65,10 @@ public class RegistrationDAO extends BikeShareDB{
 
 			userCollectionJongo.save(doc);
 			*/
+			if(!userContext.getBike().getBike_id().equals(""))
+			{
 			bikesCollectionJongo.save(userContext.getBike());
+			}
 			/*
 			BasicDBObject bikeDoc=new BasicDBObject();
 			bikeDoc.put("user_id",userContext.getBike().getUser_id());
@@ -111,10 +118,20 @@ public class RegistrationDAO extends BikeShareDB{
 		 return userFeedback;
 	}
 	
-	public void registerBike(Bikes bk) {
+	public String registerBike(Bikes bk) {
 		// TODO Auto-generated method stub
-		System.out.println("Inserting Bike");
-		bikesCollectionJongo.save(bk);
+		Bikes regBike = bikesCollectionJongo.findOne("{bike_id:'"+ bk.getBike_id()+"'}").as(Bikes.class);
+		if(regBike==null)
+		{
+			System.out.println("Inserting Bike");
+			bikesCollectionJongo.save(bk);
+			return "Success";
+		}
+		else
+		{
+			return "Bike id already exists";
+		}
+		
 	}
 
 
