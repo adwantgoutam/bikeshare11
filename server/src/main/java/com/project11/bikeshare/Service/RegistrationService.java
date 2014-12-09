@@ -21,7 +21,7 @@ public class RegistrationService {
 		//change the business logic of user details
 		/*String passwordHash = BikeShareUtil.makePasswordHash(user.getPassword(), Integer.toString(random.nextInt()));
 		user.setPassword(passwordHash);*/
-		registrationDAO.registerUser(userContext);
+		return registrationDAO.registerUser(userContext);
 		try {
 			sendUserOfflineInstructionMessage(userContext);
 		} catch (TwilioRestException e) {
@@ -29,7 +29,7 @@ public class RegistrationService {
 			System.out.println("Registration message not sent");
 			e.printStackTrace();
 		}
-		return registrationDAO.registerUser(userContext); //New added
+	//	return registrationDAO.registerUser(userContext); //New added
 	}
 	
 	private void sendUserOfflineInstructionMessage(UserContext userContext) throws TwilioRestException {
@@ -87,9 +87,9 @@ public class RegistrationService {
 		return uf;
 	}
 	
-	public void registerBike(Bikes bk) {
+	public String registerBike(Bikes bk) {
 		// TODO Auto-generated method stub
-		registrationDAO.registerBike(bk);
+		return registrationDAO.registerBike(bk);
 	}
 	
 

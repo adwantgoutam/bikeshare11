@@ -58,6 +58,12 @@ public class Bikes {
 		return start_time;
 	}
 
+	public void setStart_time(String start_time) {
+		this.start_time = start_time;
+	}
+	public void setEnd_time(String end_time) {
+		this.end_time = end_time;
+	}
 	public String getEndTime() {
 		return end_time;
 	}

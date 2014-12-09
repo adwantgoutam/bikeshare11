@@ -111,7 +111,7 @@ public class Registration extends Activity{
         					    					}
     					else
     					{
-    						Toast.makeText(getApplicationContext(), "Username Exist! Please choose anothe UserName. Please Use another UserName", Toast.LENGTH_LONG).show();
+    						Toast.makeText(getApplicationContext(), "Username Exist! Please choose another UserName.", Toast.LENGTH_LONG).show();
 
     					}
     				

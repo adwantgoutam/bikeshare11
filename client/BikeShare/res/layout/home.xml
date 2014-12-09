@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="@drawable/bikeshape">
 
     <Button
         android:id="@+id/search"
@@ -10,8 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
-        android:text="Search For a Bike" />
+        android:text="Search For a Bike" 
+        android:background="@drawable/buttonshape"
+        android:layout_marginTop="15dp" />
 
     <Button
         android:id="@+id/bikereg"
@@ -20,7 +22,8 @@
         android:layout_alignLeft="@+id/search"
         android:layout_alignRight="@+id/search"
         android:layout_below="@+id/search"
-        android:layout_marginTop="31dp"
-        android:text="Register Bike" />
+        android:text="Register Bike" 
+        android:background="@drawable/buttonshape"
+        android:layout_marginTop="15dp" />
 
 </RelativeLayout>

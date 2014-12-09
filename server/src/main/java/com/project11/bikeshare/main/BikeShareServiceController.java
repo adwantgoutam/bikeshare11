@@ -117,8 +117,8 @@ public class BikeShareServiceController {
 		Gson gson = new Gson();
 		System.out.println("Feedback string"+registerBikeStr);
 		Bikes bk=gson.fromJson(registerBikeStr, Bikes.class);
-		registrationService.registerBike(bk);
-    	return "Successfully submitted feedback";
+		return registrationService.registerBike(bk);
+    	//return "Successfully submitted feedback";
     }
     
 	    //Used for my history
