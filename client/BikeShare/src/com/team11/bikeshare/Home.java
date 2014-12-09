@@ -32,7 +32,7 @@ public class Home extends CommonMenu{
     OnClickListener registerBike = new OnClickListener() {
         public void onClick(View v) {
 
-    	    Intent in = new Intent().setClass(getApplicationContext(), Registration.class);
+    	    Intent in = new Intent().setClass(getApplicationContext(), RegisterBike.class);
 			startActivity(in);
         }
     };
