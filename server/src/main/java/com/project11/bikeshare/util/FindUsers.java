@@ -27,6 +27,7 @@ public class FindUsers {
 	    Date curr_date=new Date();
 	    BasicDBObject query = new BasicDBObject("end_time", new BasicDBObject("$lt",String.valueOf(curr_date.getTime())))
         						.append("end_time", new BasicDBObject("$gt",String.valueOf(curr_date.getTime()-900000)))
+        						.append("received","no")
         						.append("isNotificationReceived","no");
 	    DBCursor cursor = collection.find(query);
 	    ArrayList<User> list=new ArrayList<User>();
