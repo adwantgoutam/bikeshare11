@@ -6,7 +6,7 @@
     <string name="hello_world">Hello world!</string>
 	<string name="user_name">User Name</string>
 	<string name="password">Password</string>
-	<string name="register">Register</string>
+	<string name="register">Register Me</string>
 	<string name="login">Login</string>
 	<string name="mobile">Mobile Number</string>
 	<string name="mybikes">My Bikes</string>
