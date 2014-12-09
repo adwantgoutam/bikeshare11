@@ -63,7 +63,7 @@ public class RegistrationService {
 	public void registerFeedback(UserFeedback uf, String user_id_renter) {
 		// TODO Auto-generated method stub
 		UserFeedback newFeedback ;
-		UserFeedback existingFeedback = registrationDAO.getUserFeedback(user_id_renter);
+		UserFeedback existingFeedback = registrationDAO.getUserFeedback(uf,user_id_renter);
 		 if(existingFeedback!=null){
 			 newFeedback = calculateFeedback(existingFeedback,uf);
 			 uf=newFeedback;

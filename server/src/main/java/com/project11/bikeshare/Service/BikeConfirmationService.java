@@ -25,10 +25,11 @@ public class BikeConfirmationService {
 		User user = null ;
 		RentDetails rentDetails;
 		String returnString="";
+		user = bikeConfirmationDAO.findUser(user_id);
 		//check if renter is eligible to rent bike
 		if(isUserEligible(user_id)){
 			bike = bikeConfirmationDAO.confirmRent(bike_id);
-			user = bikeConfirmationDAO.findUser(user_id);
+			
 			rentDetails=bikeConfirmationDAO.updateRentDetails(bike_id,user_id);
 			sendUserConfirmationTextMessage(user,bike);
 			sendBikeOwnerTextMessage(rentDetails);
@@ -61,6 +62,9 @@ public class BikeConfirmationService {
 	private boolean isUserEligible(String user_id) {
 		// TODO Auto-generated method stub
 		MongoCursor userFeedbackCursor = bikeConfirmationDAO.getUsersFeedBackHistory(user_id);
+		if(userFeedbackCursor.count()==0){
+			return Boolean.TRUE;
+		}
 		Iterator<UserFeedback> it = userFeedbackCursor.iterator();
 		UserFeedback  userFeedback;
 		List<Integer> userScoreList= new ArrayList<Integer>();
@@ -97,7 +101,7 @@ public class BikeConfirmationService {
 		StringBuilder sb = new StringBuilder("");
 		sb.append("Your Bike is in use !");
 		sb.append("\n");
-		sb.append("Renter id "+rentDetails.getUser_id_renter());
+		sb.append("Renter id :"+rentDetails.getUser_id_renter());
 		
 		try {
 			twilioMessage.sendMessage(owner.getMobile_number(), sb.toString());
@@ -110,8 +114,11 @@ public class BikeConfirmationService {
 	public void sendUserConfirmationTextMessage(User user,BikesBean bike){
 		StringBuffer b = new StringBuffer("");
 		b.append("Access Code :"+bike.getAccessCode());
+		b.append("\n");
 		b.append("Start Time :"+bike.getStart_time());
+		b.append("\n");
 		b.append("End Time :"+bike.getEnd_time());
+		b.append("\n");
 		b.append("Enter Custom Message here");
 		
 		try {
@@ -122,5 +129,7 @@ public class BikeConfirmationService {
 		}
 		
 	}
+	
+	
 
 }

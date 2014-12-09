@@ -27,14 +27,47 @@ import com.project11.bikeshare.Beans.UserFeedback;
 
 public class RegistrationDAO extends BikeShareDB{
 
-	public void registerUser(UserContext userContext){
+	public String registerUser(UserContext userContext){
 		//save this user in mongo
 		System.out.println("Inserting user");
-		userCollectionJongo.save(userContext.getUser());
-		bikesCollectionJongo.save(userContext.getBike());
 		
+		User userDetails = userCollectionJongo.findOne("{username:'"+ userContext.getUser().getUsername()+"'}").as(User.class);
+		
+		if (userDetails==null)
+		{
+			System.out.println("Inside null");
+			userCollectionJongo.save(userContext.getUser());
+			/*
+			BasicDBObject doc=new BasicDBObject();
+			
+			doc.put("username",userContext.getUser().getUser_name());
+			doc.put("password",userContext.getUser().getPassword());
+			doc.put("email",userContext.getUser().getEmail_id());
+			doc.put("mobilenumber",userContext.getUser().getMobile_number());
+			doc.put("ssn",userContext.getUser().getSsn());
+
+			userCollectionJongo.save(doc);
+			*/
+			bikesCollectionJongo.save(userContext.getBike());
+			/*
+			BasicDBObject bikeDoc=new BasicDBObject();
+			bikeDoc.put("user_id",userContext.getBike().getUser_id());
+			bikeDoc.put("isbikeavailable",userContext.getBike().getIsBikeAvailable());
+			bikeDoc.put("bikeid",userContext.getBike().getBike_id());
+			bikeDoc.put("pincode",userContext.getBike().getPincode());
+			bikeDoc.put("bike_model",userContext.getBike().getBikeModel());
+			bikesCollectionJongo.save(bikeDoc);
+			*/
+			return "Success";
+		}
+		else
+		{
+			System.out.println("Inside nt null");			
+			return "Username Exist! Please choose anothe UserName";
+		}
 		
 	}
+
 
 	public User login(String user) throws UnknownHostException{
 		MongoClient client = new MongoClient(new ServerAddress("ds051160.mongolab.com",51160));
@@ -60,9 +93,9 @@ public class RegistrationDAO extends BikeShareDB{
 		 feedbackCollectionJongo.save(uf);
 	}
 	
-	public UserFeedback getUserFeedback(String user_id_renter) {
-		
-		 feedbackCollectionJongo.save(user_id_renter);
-		 return null;
+	public UserFeedback getUserFeedback(UserFeedback userFeedback,String user_id_renter) {
+		//userFeedback.setUser_id_renter(user_id_renter);
+		 userFeedback  = feedbackCollectionJongo.findOne("{user_id_renter:'"+user_id_renter+"'}").as(UserFeedback.class);
+		 return userFeedback;
 	}
 }
