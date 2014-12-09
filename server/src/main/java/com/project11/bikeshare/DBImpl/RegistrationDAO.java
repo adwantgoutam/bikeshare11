@@ -12,6 +12,7 @@ import org.jongo.MongoCollection;
 
 
 
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mongodb.BasicDBObject;
@@ -21,12 +22,24 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
+import com.project11.bikeshare.Beans.Bikes;
 import com.project11.bikeshare.Beans.User;
 import com.project11.bikeshare.Beans.UserContext;
 import com.project11.bikeshare.Beans.UserFeedback;
 
 public class RegistrationDAO extends BikeShareDB{
 
+	/*
+	public void registerUser(UserContext userContext){
+		//save this user in mongo
+		System.out.println("Inserting user");
+		userCollectionJongo.save(userContext.getUser());
+		bikesCollectionJongo.save(userContext.getBike());
+		
+		
+	}
+	*/
+	
 	public String registerUser(UserContext userContext){
 		//save this user in mongo
 		System.out.println("Inserting user");
@@ -68,7 +81,6 @@ public class RegistrationDAO extends BikeShareDB{
 		
 	}
 
-
 	public User login(String user) throws UnknownHostException{
 		MongoClient client = new MongoClient(new ServerAddress("ds051160.mongolab.com",51160));
 		DB database = client.getDB("bikeshare");
@@ -92,10 +104,18 @@ public class RegistrationDAO extends BikeShareDB{
 		System.out.println("Inserting feedback");
 		 feedbackCollectionJongo.save(uf);
 	}
-	
+
 	public UserFeedback getUserFeedback(UserFeedback userFeedback,String user_id_renter) {
 		//userFeedback.setUser_id_renter(user_id_renter);
 		 userFeedback  = feedbackCollectionJongo.findOne("{user_id_renter:'"+user_id_renter+"'}").as(UserFeedback.class);
 		 return userFeedback;
 	}
+	
+	public void registerBike(Bikes bk) {
+		// TODO Auto-generated method stub
+		System.out.println("Inserting Bike");
+		bikesCollectionJongo.save(bk);
+	}
+
+
 }

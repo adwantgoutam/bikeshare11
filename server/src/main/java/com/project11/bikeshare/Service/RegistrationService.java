@@ -4,6 +4,7 @@ import java.net.UnknownHostException;
 import java.security.SecureRandom;
 import java.util.Random;
 
+import com.project11.bikeshare.Beans.Bikes;
 import com.project11.bikeshare.Beans.User;
 import com.project11.bikeshare.Beans.UserContext;
 import com.project11.bikeshare.Beans.UserFeedback;
@@ -16,7 +17,7 @@ import com.twilio.sdk.TwilioRestException;
 public class RegistrationService {
 	final RegistrationDAO registrationDAO = new RegistrationDAO();
 	private Random random = new SecureRandom();
-	public void registerUser(UserContext userContext){
+	public String registerUser(UserContext userContext){
 		//change the business logic of user details
 		/*String passwordHash = BikeShareUtil.makePasswordHash(user.getPassword(), Integer.toString(random.nextInt()));
 		user.setPassword(passwordHash);*/
@@ -28,6 +29,7 @@ public class RegistrationService {
 			System.out.println("Registration message not sent");
 			e.printStackTrace();
 		}
+		return registrationDAO.registerUser(userContext); //New added
 	}
 	
 	private void sendUserOfflineInstructionMessage(UserContext userContext) throws TwilioRestException {
@@ -83,6 +85,11 @@ public class RegistrationService {
 		
 		uf.setRatings(String.valueOf(newScore));
 		return uf;
+	}
+	
+	public void registerBike(Bikes bk) {
+		// TODO Auto-generated method stub
+		registrationDAO.registerBike(bk);
 	}
 	
 

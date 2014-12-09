@@ -38,11 +38,11 @@ public class BikeShareServiceController {
 	BikesService bikesService = new BikesService();
 	@RequestMapping(value="/register_user",method = RequestMethod.POST)
     public String createUsers(@RequestParam String userContext) {
-		System.out.println("in post");
+		System.out.println("in post"+ userContext);
 		Gson gson = new Gson();
         UserContext uc=gson.fromJson(userContext, UserContext.class);
-		registrationService.registerUser(uc);
-    	return "Successfully registered";
+		return registrationService.registerUser(uc);
+    	//return "Successfully registered"; //commented
     }
 	
 	@RequestMapping(value="/login",method = RequestMethod.GET)
@@ -105,12 +105,23 @@ public class BikeShareServiceController {
     public String getUserFeedback(@RequestParam String userFeedbackStr, @RequestParam String user_id_renter) {
 		System.out.println("in feedback");
 		Gson gson = new Gson();
+		System.out.println("Feedback string"+userFeedbackStr);
 		UserFeedback uf=gson.fromJson(userFeedbackStr, UserFeedback.class);
 		registrationService.registerFeedback(uf,user_id_renter);
     	return "Successfully submitted feedback";
     }
     
-    //Used for my history
+    @RequestMapping(value="/register_bike",method = RequestMethod.POST)
+    public String getRegisterBike(@RequestParam String registerBikeStr) {
+		System.out.println("in Register Bike");
+		Gson gson = new Gson();
+		System.out.println("Feedback string"+registerBikeStr);
+		Bikes bk=gson.fromJson(registerBikeStr, Bikes.class);
+		registrationService.registerBike(bk);
+    	return "Successfully submitted feedback";
+    }
+    
+	    //Used for my history
     @RequestMapping(value="/get_my_history",method = RequestMethod.GET)
     public String getMyHistory(@RequestParam String user_id) {
         List<RentDetails> rentDetailsList = new MyHistoryService().getMyHistory(user_id);
@@ -168,7 +179,6 @@ public class BikeShareServiceController {
 		return str;
 	}
 	
-
 	
 	@RequestMapping(value="/lendBike",method = RequestMethod.POST)
 	public String postLendBikes(@RequestParam String bikecontext) throws UnknownHostException
@@ -198,4 +208,9 @@ public class BikeShareServiceController {
 		return "bike revoke successfull";
 		
 	}
+	
+		public String OfflineMode(@RequestParam String From,@RequestParam String Body) {
+        
+        return "Successfully updated";
+    }
 }
