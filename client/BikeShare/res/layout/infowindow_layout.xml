@@ -1,24 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/marker_layout"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent" >
 
-    <LinearLayout
-        android:id="@+id/station_info_layout"
-        android:layout_width="205dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        <TextView
+            android:id="@+id/starttime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/bikemodel"
+            android:layout_below="@+id/bikemodel"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-            <TextView
-                android:id="@+id/marker_label"
-                android:layout_marginLeft="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/endtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/starttime"
+            android:layout_below="@+id/starttime"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/confirm"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/endtime"
+            android:layout_marginLeft="68dp"
+            android:text="Click to Confirm" />
+        
+          
+           <TextView
+            android:id="@+id/bikemodel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="34dp"
+            android:layout_alignLeft="@+id/confirm"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-    
-</LinearLayout>
+           
+</RelativeLayout>

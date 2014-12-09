@@ -1,18 +1,18 @@
 package com.team11.bikeshare;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
 import java.util.List;
 
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
@@ -24,10 +24,9 @@ import com.loopj.android.http.RequestParams;
 import com.team11.beans.Bikes;
 import com.team11.beans.BikesList;
 import com.team11.beans.Coordinates;
-import com.team11.beans.User;
+import com.team11.beans.GlobalClass;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
@@ -36,11 +35,8 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,13 +47,14 @@ public class ShowBikeLocations extends CommonMenu implements OnMarkerClickListen
 	GoogleMap googleMap;
 	BikesList bikeslist;
 	LatLng gpsLocation;
-	EditText editText1;
+	String modl,stime,etime;
+	
+	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.showbikelocations);
-		editText1=(EditText)findViewById(R.id.paswd);
 		// gps
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         boolean gps_enabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -82,14 +79,14 @@ public class ShowBikeLocations extends CommonMenu implements OnMarkerClickListen
         Gson gson1 = builder.create();
         String str=gson1.toJson(coordinates);
 		params.put("coordinates", str);
-		client.get("http://192.16856.1:8080/locations",params, new AsyncHttpResponseHandler(){
+		client.get("http://10.0.0.9:8080/locations",params, new AsyncHttpResponseHandler(){
 			public void onSuccess(int statuscode,String response)
 			{
 				Gson gson = new Gson();
 				bikeslist=gson.fromJson(response, BikesList.class);	
-				Toast.makeText(getApplicationContext(),"In Success"+bikeslist.getList().size(), Toast.LENGTH_LONG).show();
-				Toast.makeText(getApplicationContext(),"--"+response, Toast.LENGTH_LONG).show();
-		        if(bikeslist==null)
+				//Toast.makeText(getApplicationContext(),"In Success"+bikeslist.getList().size(), Toast.LENGTH_LONG).show();
+				//Toast.makeText(getApplicationContext(),"--"+response, Toast.LENGTH_LONG).show();
+		        if(bikeslist.getList().size()==0 || bikeslist.getList()==null)
 		        {
 		        	Toast.makeText(getApplicationContext(),"No bikes available nearby your location", Toast.LENGTH_LONG)
 		    				.show();
@@ -103,7 +100,7 @@ public class ShowBikeLocations extends CommonMenu implements OnMarkerClickListen
 		        		//googleMap.clear();
 		        		double lat=Double.parseDouble(b.getLocation().getCoordinates().getLatitude());
 		        		double lngt=Double.parseDouble(b.getLocation().getCoordinates().getLongitude());
-		        		Toast.makeText(getApplicationContext(),"lat"+lat, Toast.LENGTH_LONG).show();
+		        		//Toast.makeText(getApplicationContext(),"lat"+lat, Toast.LENGTH_LONG).show();
 		        		//googleMap.addMarker(new MarkerOptions().position(gpsLocation).title("hello").snippet("helo"));
 		        		googleMap.addMarker(new MarkerOptions().position(new LatLng(lat,lngt)).title(b.getBike_id()));
 		        	}
@@ -125,7 +122,10 @@ public class ShowBikeLocations extends CommonMenu implements OnMarkerClickListen
 	@Override
 	public boolean onMarkerClick(Marker marker) {
 		
-		marker.showInfoWindow();
+		if(marker.getTitle().equals("MySelf")){
+		}
+		else{marker.showInfoWindow();}
+		
 		//marker.
 		return false;
 	}
@@ -184,15 +184,63 @@ public class ShowBikeLocations extends CommonMenu implements OnMarkerClickListen
         @Override
         public View getInfoContents(Marker marker)
         {
-            View v  = getLayoutInflater().inflate(R.layout.infowindow_layout, null);
-            TextView markerLabel = (TextView)v.findViewById(R.id.marker_label);
-            markerLabel.setText(marker.getTitle());
+        	final View v  = getLayoutInflater().inflate(R.layout.infowindow_layout, null);
+        	TextView bikemodel = (TextView)v.findViewById(R.id.bikemodel);
+        	TextView starttime = (TextView)v.findViewById(R.id.starttime);
+        	TextView endtime = (TextView)v.findViewById(R.id.endtime);
+        	AsyncHttpClient client = new AsyncHttpClient();
+        	RequestParams params=new RequestParams();
+        	params.put("bikeid", marker.getTitle());
+        	client.get("http://10.0.0.9:8080/bike",params, new AsyncHttpResponseHandler(){
+    			public void onSuccess(int statuscode,String response)
+    			{
+    				System.out.println("in custom marker");
+    				Gson gson = new Gson();
+    				Bikes bike=gson.fromJson(response, Bikes.class);	
+    				modl=bike.getBikeModel();
+    	            stime=bike.getStartTime();
+    	            etime=bike.getEndTime();
+       			}
+    				
+    			
+    		});
+        	if(modl==null || stime==null || etime==null){}
+        	else{
+        		DateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss");
+          		Calendar scal = Calendar.getInstance();
+        		scal.setTimeInMillis(Long.parseLong(stime));
+        		Calendar ecal = Calendar.getInstance();
+        		ecal.setTimeInMillis(Long.parseLong(etime));
+        		bikemodel.setText("Model : "+modl);
+        		starttime.setText("Start Time : "+formatter.format(scal.getTime()));
+        		endtime.setText("End Time : "+formatter.format(ecal.getTime()));}
+            //Toast.makeText(getApplicationContext(),str, Toast.LENGTH_LONG).show();
+    		
+            
+        	
             return v;
         }
     }
 	@Override
 	public void onInfoWindowClick(Marker marker) {
 		// TODO Auto-generated method stub
+		AsyncHttpClient client = new AsyncHttpClient();
+    	RequestParams params=new RequestParams();
+    	params.put("bike_id", marker.getTitle());
+    	GlobalClass gv=(GlobalClass) getApplicationContext();
+    	params.put("user_id", gv.getUsername());
+    	client.post("http://10.0.0.9:8080/confirm_rent",params, new AsyncHttpResponseHandler(){
+			public void onSuccess(int statuscode,String response)
+			{
+				
+	            if(response=="success")
+	            {
+	            	Toast.makeText(getApplicationContext(), "confirmed", Toast.LENGTH_SHORT);
+	            }
+   			}
+				
+			
+		});
 		  Toast.makeText(getBaseContext(), 
 				    "Info Window clicked@" + marker.getTitle(), 
 				    Toast.LENGTH_SHORT).show();

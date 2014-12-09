@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
         	AsyncHttpClient client = new AsyncHttpClient();
         	RequestParams params=new RequestParams();
     		params.put("user_id", username.getText().toString());
-    		client.get("http://10.185.218.96:8080/login",params, new AsyncHttpResponseHandler(){
+    		client.get("http://10.0.0.9:8080/login",params, new AsyncHttpResponseHandler(){
     			
     			public void onSuccess(int statuscode,String response)
     			{
