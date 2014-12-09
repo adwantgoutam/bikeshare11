@@ -209,8 +209,5 @@ public class BikeShareServiceController {
 		
 	}
 	
-		public String OfflineMode(@RequestParam String From,@RequestParam String Body) {
-        
-        return "Successfully updated";
-    }
+		
 }
