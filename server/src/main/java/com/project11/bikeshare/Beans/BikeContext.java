@@ -1,23 +1,19 @@
 package com.project11.bikeshare.Beans;
 
 public class BikeContext {
-	
-	private Bikes bk;
-	private RentDetails rd;
-	
-	public Bikes getBk() {
-		return bk;
+	private RentDetails rentdetails;
+	private Bikes bike;
+	public RentDetails getRentdetails() {
+		return rentdetails;
 	}
-	public void setBk(Bikes bk) {
-		this.bk = bk;
+	public void setRentdetails(RentDetails rentdetails) {
+		this.rentdetails = rentdetails;
 	}
-	public RentDetails getRd() {
-		return rd;
+	public Bikes getBike() {
+		return bike;
 	}
-	public void setRd(RentDetails rd) {
-		this.rd = rd;
+	public void setBike(Bikes bike) {
+		this.bike = bike;
 	}
-	
-	
 
 }

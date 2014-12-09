@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.project11.bikeshare.Beans.BikeContext;
 import com.project11.bikeshare.Beans.Bikes;
 import com.project11.bikeshare.Beans.BikesList;
 import com.project11.bikeshare.Beans.Coordinates;
@@ -34,7 +35,7 @@ import com.twilio.sdk.TwilioRestException;
 @RestController
 public class BikeShareServiceController {
 	RegistrationService registrationService = new RegistrationService();
-	
+	BikesService bikesService = new BikesService();
 	@RequestMapping(value="/register_user",method = RequestMethod.POST)
     public String createUsers(@RequestParam String userContext) {
 		System.out.println("in post");
@@ -90,22 +91,7 @@ public class BikeShareServiceController {
         new MyAccountDAO().updateAccount(u);
         return "Successfully updated";
     }
-	
-	@RequestMapping(value="/getBike",method = RequestMethod.GET)
-	public String getLendBikes(@RequestParam String bikeid) throws UnknownHostException
-	{
-	  //  BikeContext bc= new BikeContext();
-        BikesService bs = new BikesService();
-    	Bikes bb = new Bikes();
-       // bc=bs.getBikeDetails(bikeid);
-    	 bb=bs.getBikeDetails(bikeid);
-        GsonBuilder builder = new GsonBuilder();
-        Gson gson1 = builder.create();
-        //String str=gson1.toJson(bc);
-        String str=gson1.toJson(bb);
-		return str;
-	}
-	
+
 	@RequestMapping(value="/bike",method = RequestMethod.GET)
 	 public String findBike(@RequestParam String bikeid) throws UnknownHostException
 	{
@@ -154,5 +140,63 @@ public class BikeShareServiceController {
 		}
     	return "Successfully updated";
     }
-  
+  @RequestMapping(value="/getBike",method = RequestMethod.GET)
+	public String getLendBikes(@RequestParam String bikeid) throws UnknownHostException
+	{
+	  //  BikeContext bc= new BikeContext();
+        BikesService bs = new BikesService();
+    	BikeContext bb = new BikeContext();
+       // bc=bs.getBikeDetails(bikeid);
+    	 bb=bs.getBikeDetails(bikeid);
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson1 = builder.create();
+        //String str=gson1.toJson(bc);
+        String str=gson1.toJson(bb);
+        System.out.println("--"+str);
+		return str;
+	}
+	
+	@RequestMapping(value="/allbikes",method = RequestMethod.GET)
+	public String getAllBikes(@RequestParam String user_id) throws UnknownHostException
+	{
+		BikesList b2=new BikesList();
+		List<Bikes> l1=new BikesService().getAllBikes(user_id);
+		b2.setList(l1);
+		GsonBuilder builder = new GsonBuilder();
+		Gson gson1 = builder.create();
+		String str=gson1.toJson(b2);
+		System.out.println(str);
+		return str;
+	}
+	
+
+	
+	@RequestMapping(value="/lendBike",method = RequestMethod.POST)
+	public String postLendBikes(@RequestParam String bikecontext) throws UnknownHostException
+	{
+		System.out.println(bikecontext);
+		Gson gson = new Gson();
+		BikeContext bikecontext2=gson.fromJson(bikecontext, BikeContext.class);
+		System.out.println("entered");
+		System.out.println(bikecontext2.getBike().getBike_id());
+		bikesService.lendBike(bikecontext2);
+		return "Lend Successful";
+		
+	}
+	
+	@RequestMapping(value="/gotMyBike",method = RequestMethod.POST)
+	public String gotMyBike(@RequestParam String bikeid) throws UnknownHostException
+	{
+		bikesService.gotMyBike(bikeid);
+		return "Got My Bike successfull";
+		
+	}
+	
+	@RequestMapping(value="/revoke",method = RequestMethod.POST)
+	public String bikeRented(@RequestParam String bikeid) throws UnknownHostException
+	{
+		bikesService.bikeRevoke(bikeid);
+		return "bike revoke successfull";
+		
+	}
 }
