@@ -13,12 +13,12 @@ import com.project11.bikeshare.util.TwilioMessage;
 import com.twilio.sdk.TwilioRestException;
 
 public class OfflineModeService {
-	
+	static Map<String, String> sessionMap = new HashMap<String, String>();
 	OfflineModeDAO offlineModeDAO = new OfflineModeDAO();
 	public void offlineMode(String From,String Body) throws TwilioRestException, UnknownHostException
 	{
 		TwilioMessage twilioMessage = new TwilioMessage();
-		Map<String, String> sessionMap = new HashMap<String, String>();
+		
 		boolean authUser= Boolean.FALSE;
 		String content[];
 		String message="";
@@ -35,12 +35,8 @@ public class OfflineModeService {
 			String pincode = content[2];
 			String rentKeyword = content[3];
 			String bike_id = content[4];
-			if(user_id==null){
-				twilioMessage.sendMessage(From, "Not Authenticated");
-			}else{
-				
 			
-			if(sessionMap.isEmpty() || !sessionMap.containsKey(user_id)){
+			if(sessionMap.isEmpty() || !sessionMap.containsKey(From)){
 				//if map is empty of value is not present in session add user to session map
 				authUser = authenticateUser(user_id,password);
 				if(authUser){sessionMap.put(From,user_id);}
@@ -60,7 +56,7 @@ public class OfflineModeService {
 			}
 			}
 			
-		}
+		
 		
 	}
 	private String giveUserListOfBikes(String pincode) throws UnknownHostException {
