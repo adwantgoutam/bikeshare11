@@ -5,6 +5,7 @@ public class UserFeedback {
 	private String returnBike;
 	private String bikeDamage;
 	private String ratings;
+	private String user_id_renter;
 	public String getReturnBike() {
 		return returnBike;
 	}
@@ -22,6 +23,12 @@ public class UserFeedback {
 	}
 	public void setRatings(String ratings) {
 		this.ratings = ratings;
+	}
+	public String getUser_id_renter() {
+		return user_id_renter;
+	}
+	public void setUser_id_renter(String user_id_renter) {
+		this.user_id_renter = user_id_renter;
 	}
 	
 	

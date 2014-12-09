@@ -117,11 +117,11 @@ public class BikeShareServiceController {
 	}
     
     @RequestMapping(value="/feedback",method = RequestMethod.POST)
-    public String getUserFeedback(@RequestParam String userFeedbackStr) {
+    public String getUserFeedback(@RequestParam String userFeedbackStr, @RequestParam String user_id_renter) {
 		System.out.println("in feedback");
 		Gson gson = new Gson();
 		UserFeedback uf=gson.fromJson(userFeedbackStr, UserFeedback.class);
-		registrationService.registerFeedback(uf);
+		registrationService.registerFeedback(uf,user_id_renter);
     	return "Successfully submitted feedback";
     }
     

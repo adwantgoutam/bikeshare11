@@ -59,5 +59,10 @@ public class RegistrationDAO extends BikeShareDB{
 		System.out.println("Inserting feedback");
 		 feedbackCollectionJongo.save(uf);
 	}
-
+	
+	public UserFeedback getUserFeedback(String user_id_renter) {
+		
+		 feedbackCollectionJongo.save(user_id_renter);
+		 return null;
+	}
 }

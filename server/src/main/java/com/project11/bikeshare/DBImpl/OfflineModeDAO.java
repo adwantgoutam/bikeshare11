@@ -22,7 +22,7 @@ public class OfflineModeDAO extends BikeShareDB{
 		DB database = client.getDB("bikeshare");
 	    database.authenticate("bikeshare","bikeshare".toCharArray());
 	    DBCollection collection = database.getCollection("bikes");
-	    BasicDBObject query=new BasicDBObject("pincode",zipcode).append("isbikeavailable","yes");
+	    BasicDBObject query=new BasicDBObject("pincode",zipcode).append("isBikeAvailable","yes");
 	    DBCursor cursor = collection.find(query);
 	    List<Bikes> list=new ArrayList<Bikes>();
 	    while(cursor.hasNext())
@@ -30,11 +30,11 @@ public class OfflineModeDAO extends BikeShareDB{
 			DBObject obj=cursor.next();
 			Bikes b=new Bikes();
 			b.setUser_id(String.valueOf(obj.get("user_id")));
-			b.setBike_id(String.valueOf(obj.get("bikeid")));
+			b.setBike_id(String.valueOf(obj.get("bike_id")));
 			b.setAccessCode(String.valueOf(obj.get("accesscode")));
-			b.setIsBikeAvailable((String) obj.get("isbikeavailable"));
+			b.setIsBikeAvailable((String) obj.get("isBikeAvailable"));
 			b.setPincode(String.valueOf(obj.get("pincode")));
-			b.setBikeModel(String.valueOf(obj.get("bike_model")));
+			b.setBikeModel(String.valueOf(obj.get("bikeModel")));
 			b.setStart_time(String.valueOf(obj.get("start_time")));
 			b.setEnd_time(String.valueOf(obj.get("end_time")));
 	    	list.add(b);
@@ -49,7 +49,7 @@ public class OfflineModeDAO extends BikeShareDB{
 		DB database = client.getDB("bikeshare");
 	    database.authenticate("bikeshare","bikeshare".toCharArray());
 	    DBCollection collection = database.getCollection("user");
-	    BasicDBObject query=new BasicDBObject("username",username);
+	    BasicDBObject query=new BasicDBObject("user_name",username);
 	    DBCursor cursor = collection.find(query);
 	    if(cursor.size()==1)
 	    {
@@ -63,12 +63,12 @@ public class OfflineModeDAO extends BikeShareDB{
 	}
 
 	public User getUser(String user_id) {
-		User u =userCollectionJongo.findOne("{user_id:'"+user_id+"'}").as(User.class);
+		User u =userCollectionJongo.findOne("{user_name:'"+user_id+"'}").as(User.class);
 		return u;
 	}
 	
 	public boolean authUser(String user_id,String password) {
-		User u =userCollectionJongo.findOne("{username:'"+user_id+"'},{password:'"+password+"'}").as(User.class);
+		User u =userCollectionJongo.findOne("{user_name:'"+user_id+"'},{password:'"+password+"'}").as(User.class);
 		if(u!=null && u.getPassword().equals(password) && (u.getUsername().equals(user_id))){
 			return Boolean.TRUE;
 		}

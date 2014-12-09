@@ -60,10 +60,29 @@ public class RegistrationService {
 		return registrationDAO.login(user);
 	}
 
-	public void registerFeedback(UserFeedback uf) {
+	public void registerFeedback(UserFeedback uf, String user_id_renter) {
 		// TODO Auto-generated method stub
-		 registrationDAO.feedback(uf);
+		UserFeedback newFeedback ;
+		UserFeedback existingFeedback = registrationDAO.getUserFeedback(user_id_renter);
+		 if(existingFeedback!=null){
+			 newFeedback = calculateFeedback(existingFeedback,uf);
+			 uf=newFeedback;
+			 registrationDAO.feedback(uf);
+		 }else{
+			 registrationDAO.feedback(uf);
+		 }
+	}
+
+	private UserFeedback calculateFeedback(UserFeedback existingFeedback,
+			UserFeedback uf) {
 		
+		double existingScore =Double.parseDouble(existingFeedback.getRatings());
+		double currentScore =Double.parseDouble(uf.getRatings());
+		
+		int newScore = (int) ((existingScore + currentScore)/2);
+		
+		uf.setRatings(String.valueOf(newScore));
+		return uf;
 	}
 	
 

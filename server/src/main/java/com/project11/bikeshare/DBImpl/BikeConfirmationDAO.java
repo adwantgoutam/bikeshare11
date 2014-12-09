@@ -2,6 +2,8 @@ package com.project11.bikeshare.DBImpl;
 
 import java.net.UnknownHostException;
 
+import org.jongo.MongoCursor;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -10,14 +12,16 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
 import com.project11.bikeshare.Beans.Bikes;
+import com.project11.bikeshare.Beans.BikesBean;
 import com.project11.bikeshare.Beans.RentDetails;
 import com.project11.bikeshare.Beans.User;
+import com.project11.bikeshare.Beans.UserFeedback;
 
 public class BikeConfirmationDAO extends BikeShareDB{
 
-	public Bikes confirmRent(String bike_id) {
-		bikesCollectionJongo.update("{bikeid: '"+bike_id+"'}").with("{$set:{isbikeavailable: 'no'}}");
-		Bikes bikes= bikesCollectionJongo.findOne("{bikeid: '"+bike_id+"'}").as(Bikes.class);
+	public BikesBean confirmRent(String bike_id) {
+		bikesCollectionJongo.update("{bike_id: '"+bike_id+"'}").with("{$set:{isBikeAvailable: 'no'}}");
+		BikesBean bikes= bikesCollectionJongo.findOne("{bike_id: '"+bike_id+"'}").as(BikesBean.class);
 	return bikes;
 	}
 
@@ -50,8 +54,15 @@ public class BikeConfirmationDAO extends BikeShareDB{
 
 	//when rent is confirmed change the renter id.
 	public RentDetails updateRentDetails(String bike_id,String username) {
-		rentDetailsCollectionJongo.update("{user_id_renter: '"+username+"'}").with("{$set:{bikeid: '"+bike_id+"'},{received:'nyr'}}");
-		return rentDetailsCollectionJongo.findOne("{bikeid: '"+bike_id+"'},{received:'nyr'}").as(RentDetails.class);
+		/*rentDetailsCollectionJongo.update("{user_id_renter: '"+username+"'}").with("{$set:{bikeid: '"+bike_id+"'},{received:'nyr'}}");*/
+		rentDetailsCollectionJongo.update("{bike_id: '"+bike_id+"'},{received:'nyr'}").with("{$set:{user_id_renter: '"+username+"'}}");
+		return rentDetailsCollectionJongo.findOne("{bike_id: '"+bike_id+"'},{received:'nyr'}").as(RentDetails.class);
+	}
+
+	public MongoCursor getUsersFeedBackHistory(String user_id) {
+		// TODO Auto-generated method stub
+		MongoCursor<UserFeedback> all = feedbackCollectionJongo.find("{user_id_renter: '"+user_id+"'}").as(UserFeedback.class);
+		return all;
 	}
 	
 
