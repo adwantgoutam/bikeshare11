@@ -26,7 +26,7 @@ public class BikeConfirmationDAO extends BikeShareDB{
 	}
 
 	public User findUser(String user_id) {
-		User user = userCollectionJongo.findOne("{user_id: '"+user_id+"'}").as(User.class);
+		User user = userCollectionJongo.findOne("{user_name: '"+user_id+"'}").as(User.class);
 		return user;
 	}
 	
@@ -56,7 +56,9 @@ public class BikeConfirmationDAO extends BikeShareDB{
 	public RentDetails updateRentDetails(String bike_id,String username) {
 		/*rentDetailsCollectionJongo.update("{user_id_renter: '"+username+"'}").with("{$set:{bikeid: '"+bike_id+"'},{received:'nyr'}}");*/
 		rentDetailsCollectionJongo.update("{bike_id: '"+bike_id+"'},{received:'nyr'}").with("{$set:{user_id_renter: '"+username+"'}}");
-		return rentDetailsCollectionJongo.findOne("{bike_id: '"+bike_id+"'},{received:'nyr'}").as(RentDetails.class);
+		RentDetails rentDetails = rentDetailsCollectionJongo.findOne("{bike_id: '"+bike_id+"'},{received:'nyr'}").as(RentDetails.class);
+		rentDetailsCollectionJongo.update("{bike_id: '"+bike_id+"'},{received:'nyr'}").with("{$set:{received:'no'}}");
+		return rentDetails;
 	}
 
 	public MongoCursor getUsersFeedBackHistory(String user_id) {

@@ -93,9 +93,9 @@ public class RegistrationDAO extends BikeShareDB{
 		 feedbackCollectionJongo.save(uf);
 	}
 	
-	public UserFeedback getUserFeedback(String user_id_renter) {
-		
-		 feedbackCollectionJongo.save(user_id_renter);
-		 return null;
+	public UserFeedback getUserFeedback(UserFeedback userFeedback,String user_id_renter) {
+		//userFeedback.setUser_id_renter(user_id_renter);
+		 userFeedback  = feedbackCollectionJongo.findOne("{user_id_renter:'"+user_id_renter+"'}").as(UserFeedback.class);
+		 return userFeedback;
 	}
 }

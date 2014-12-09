@@ -52,7 +52,6 @@ public class BikeShareServiceController {
         GsonBuilder builder = new GsonBuilder();
         Gson gson1 = builder.create();
         String str=gson1.toJson(u);
-        System.out.println(str);
         return str;
 	}
 	
@@ -137,8 +136,8 @@ public class BikeShareServiceController {
     //used to confirm the rent thus the marker disappears from map
     @RequestMapping(value="/confirm_rent",method = RequestMethod.POST)
     public String confirmRenting(@RequestParam String bike_id,@RequestParam String user_id) {
-    	new BikeConfirmationService().confirmRent(bike_id,user_id);
-        return "success";
+    	return new BikeConfirmationService().confirmRent(bike_id,user_id);
+        
     }
     
     @RequestMapping(value="/twilio_offline",method = RequestMethod.POST)
