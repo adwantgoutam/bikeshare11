@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity" 
+    android:background="@drawable/bikeshape">
 
     <requestFocus />
 
@@ -12,6 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/endTime"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="4dp"
+        android:textColorHint="#7C7B7C"
+        android:hint="Bike Model"
         android:layout_below="@+id/endTime"
         android:editable="false"
         android:ems="10" />
@@ -23,7 +28,10 @@
         android:layout_alignLeft="@+id/revoke"
         android:layout_below="@+id/revoke"
         android:text="Got My Bike"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:background="@drawable/buttonshape"
+        android:layout_marginTop="15dp" 
+        />
 
     <Button
         android:id="@+id/revoke"
@@ -32,7 +40,9 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="   Revoke   "
-        android:visibility="invisible" />
+        android:visibility="invisible" 
+        android:background="@drawable/buttonshape"
+        android:layout_marginTop="15dp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -50,7 +60,8 @@
         android:layout_alignBaseline="@+id/endTime"
         android:layout_alignBottom="@+id/endTime"
         android:layout_alignRight="@+id/textView2"
-        android:text="End Date" />
+        android:text="End Date" 
+        />
 
     <TextView
         android:id="@+id/textView2"
@@ -69,7 +80,11 @@
         android:layout_below="@+id/accessCode"
         android:editable="false"
         android:ems="10"
-        android:inputType="date" />
+        android:inputType="date" 
+        android:layout_marginTop="4dp"
+        android:ems="10"
+         android:textColorHint="#7C7B7C"
+        android:hint="Start Time"/>
 
     <EditText
         android:id="@+id/endTime"
@@ -79,7 +94,11 @@
         android:layout_below="@+id/startTime"
         android:editable="false"
         android:ems="10"
-        android:inputType="date" />
+        android:inputType="date" 
+        android:layout_marginTop="4dp"
+        android:ems="10"
+         android:textColorHint="#7C7B7C"
+        android:hint="End Time"/>
 
     <EditText
         android:id="@+id/accessCode"
@@ -89,7 +108,11 @@
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/textView1"
         android:editable="false"
-        android:ems="10" />
+        android:ems="10"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+         android:textColorHint="#7C7B7C"
+        android:hint="Access Code" />
 
     <TextView
         android:id="@+id/textView1"

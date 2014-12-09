@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+    android:background="@drawable/bikeshape">
 
     <EditText
         android:id="@+id/bikeName1"
@@ -13,7 +14,9 @@
         android:inputType="text" 
         android:ems="10" 
         android:hint="Bike Name"
-        android:visibility="visible"/>
+        android:visibility="visible"
+        android:layout_marginTop="4dp"
+        android:textColorHint="#7C7B7C"/>
 
     <EditText
         android:id="@+id/bikeModel1"
@@ -24,7 +27,9 @@
         android:inputType="text" 
         android:ems="10" 
         android:hint="Bike Model"
-        android:visibility="visible" />
+        android:visibility="visible" 
+        android:layout_marginTop="4dp"
+        android:textColorHint="#7C7B7C"/>
     
 
     <Button
@@ -34,6 +39,7 @@
         android:layout_below="@+id/bikeModel1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="Register Bike" />
+        android:text="Register Bike"
+        android:background="@drawable/buttonshape" />
 
 </RelativeLayout>

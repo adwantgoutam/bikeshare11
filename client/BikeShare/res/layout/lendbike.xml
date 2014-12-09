@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity" 
+    android:background="@drawable/bikeshape">
 
     <requestFocus />
 
@@ -16,7 +17,9 @@
         android:layout_marginLeft="34dp"
         android:ems="10"
         android:hint="@string/enddate"
-        android:inputType="date" />
+        android:inputType="date" 
+        android:layout_marginTop="4dp"
+        android:textColorHint="#7C7B7C"/>
 
     <EditText
         android:id="@+id/bikeModel"
@@ -26,7 +29,9 @@
         android:layout_below="@+id/endTime"
         android:ems="10"
         android:editable="false"
-        android:hint="@string/bike" />
+        android:hint="@string/bike" 
+        android:layout_marginTop="4dp"
+         android:textColorHint="#7C7B7C"/>
 
     <EditText
         android:id="@+id/startTime"
@@ -36,7 +41,9 @@
         android:layout_below="@+id/accessCode"
         android:ems="10"
         android:hint="@string/startdate"
-        android:inputType="date" />
+        android:inputType="date" 
+        android:layout_marginTop="4dp"
+         android:textColorHint="#7C7B7C"/>
 
     <EditText
         android:id="@+id/accessCode"
@@ -46,16 +53,20 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:hint="@string/accesscode">
+        android:hint="@string/accesscode"
+        android:layout_marginTop="4dp"
+         android:textColorHint="#7C7B7C">
         <requestFocus />
         </EditText>
 
     <Button
+        android:background="@drawable/buttonshape"
         android:id="@+id/lend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Lend" />
+        android:text="Lend" 
+        android:layout_marginTop="15dp"/>
 
 </RelativeLayout>
