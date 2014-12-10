@@ -18,4 +18,5 @@
     <string name="enddate">End: Date and Time</string>
     <string name="endtime">End Time</string>
     <string name="bike">Bike Model</string>
+    <string name="home">Home</string>
 </resources>

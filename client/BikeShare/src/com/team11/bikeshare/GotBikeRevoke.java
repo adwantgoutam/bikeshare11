@@ -19,7 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class GotBikeRevoke extends FragmentActivity {
+public class GotBikeRevoke extends CommonMenu {
 	 EditText accessCode;
 	 EditText bikeModel;
 	 EditText starttime;
