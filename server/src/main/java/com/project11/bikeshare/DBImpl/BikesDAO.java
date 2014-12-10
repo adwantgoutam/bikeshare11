@@ -41,7 +41,7 @@ public class BikesDAO extends BikeShareDB{
 	                        new BasicDBObject("$geometry",
 	                                new BasicDBObject("type", "Point")
 	                                    .append("coordinates", myLocation))
-	                             .append("$maxDistance",  5000)
+	                             .append("$maxDistance",  2000)
 	                        )
 	                )
 	            );

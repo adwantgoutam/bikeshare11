@@ -3,8 +3,11 @@ package com.team11.bikeshare;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import java.util.List;
 
@@ -25,10 +28,16 @@ import com.team11.beans.Bikes;
 import com.team11.beans.BikesList;
 import com.team11.beans.Coordinates;
 import com.team11.beans.GlobalClass;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+
 
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -36,6 +45,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +58,10 @@ public class ShowBikeLocations extends CommonMenu implements OnMarkerClickListen
 	BikesList bikeslist;
 	LatLng gpsLocation;
 	String modl,stime,etime;
+	private Polyline newPolyline;
+	private int width, height;
+	private LatLngBounds latlngBounds;
+	
 	
 	
 	
@@ -79,7 +93,7 @@ public class ShowBikeLocations extends CommonMenu implements OnMarkerClickListen
         Gson gson1 = builder.create();
         String str=gson1.toJson(coordinates);
 		params.put("coordinates", str);
-		client.get("http://10.185.237.62:8080/locations",params, new AsyncHttpResponseHandler(){
+		client.get("http://10.0.0.9:8080/locations",params, new AsyncHttpResponseHandler(){
 			public void onSuccess(int statuscode,String response)
 			{
 				Gson gson = new Gson();
@@ -118,13 +132,64 @@ public class ShowBikeLocations extends CommonMenu implements OnMarkerClickListen
         }
 
 			}
+	public void handleGetDirectionsResult(ArrayList<LatLng> directionPoints) {
+		PolylineOptions rectLine = new PolylineOptions().width(5).color(Color.RED);
+
+		for(int i = 0 ; i < directionPoints.size() ; i++) 
+		{          
+			rectLine.add(directionPoints.get(i));
+		}
+		if (newPolyline != null)
+		{
+			newPolyline.remove();
+		}
+		newPolyline = googleMap.addPolyline(rectLine);
+			//latlngBounds = createLatLngBoundsObject(gpsLocation,new LatLng(marker.g, longitude) );
+			//googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latlngBounds, width, height, 150));
+		
+	}
+	
+	private void getSreenDimanstions()
+	{
+		Display display = getWindowManager().getDefaultDisplay();
+		width = display.getWidth(); 
+		height = display.getHeight(); 
+	}
+	
+	private LatLngBounds createLatLngBoundsObject(LatLng firstLocation, LatLng secondLocation)
+	{
+		if (firstLocation != null && secondLocation != null)
+		{
+			LatLngBounds.Builder builder = new LatLngBounds.Builder();    
+			builder.include(firstLocation).include(secondLocation);
+			
+			return builder.build();
+		}
+		return null;
+	}
+	
+	public void findDirections(double fromPositionDoubleLat, double fromPositionDoubleLong, double toPositionDoubleLat, double toPositionDoubleLong, String mode)
+	{
+		Map<String, String> map = new HashMap<String, String>();
+		map.put(GetDirectionsAsyncTask.USER_CURRENT_LAT, String.valueOf(fromPositionDoubleLat));
+		map.put(GetDirectionsAsyncTask.USER_CURRENT_LONG, String.valueOf(fromPositionDoubleLong));
+		map.put(GetDirectionsAsyncTask.DESTINATION_LAT, String.valueOf(toPositionDoubleLat));
+		map.put(GetDirectionsAsyncTask.DESTINATION_LONG, String.valueOf(toPositionDoubleLong));
+		map.put(GetDirectionsAsyncTask.DIRECTIONS_MODE, mode);
+		
+		GetDirectionsAsyncTask asyncTask = new GetDirectionsAsyncTask(this);
+		asyncTask.execute(map);	
+	}
+
 
 	@Override
 	public boolean onMarkerClick(Marker marker) {
 		
 		if(marker.getTitle().equals("MySelf")){
 		}
-		else{marker.showInfoWindow();}
+		else{
+			findDirections(gpsLocation.latitude, gpsLocation.longitude,marker.getPosition().latitude, marker.getPosition().longitude, GMapV2Direction.MODE_WALKING );
+			marker.showInfoWindow();}
 		
 		//marker.
 		return false;
@@ -191,7 +256,7 @@ public class ShowBikeLocations extends CommonMenu implements OnMarkerClickListen
         	AsyncHttpClient client = new AsyncHttpClient();
         	RequestParams params=new RequestParams();
         	params.put("bikeid", marker.getTitle());
-        	client.get("http://10.185.237.62:8080/bike",params, new AsyncHttpResponseHandler(){
+        	client.get("http://10.0.0.9:8080/bike",params, new AsyncHttpResponseHandler(){
     			public void onSuccess(int statuscode,String response)
     			{
     				System.out.println("in custom marker");
