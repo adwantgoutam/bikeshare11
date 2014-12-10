@@ -11,7 +11,14 @@ public class BikesBean {
 	private String bikeModel;
 	private String start_time;
 	private String end_time;
+	private String uuid;
 	
+	public String getUuid() {
+		return uuid;
+	}
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
 	public String getStart_time() {
 		return start_time;
 	}
