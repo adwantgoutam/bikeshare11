@@ -26,7 +26,7 @@ public class GotBikeRevoke extends FragmentActivity {
 	 EditText endtime;
 	 Button revoke;
 	 Button gotmybike;
-
+	 String user_id_renter;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gotbikerevoke);
