@@ -51,6 +51,7 @@
         <activity android:name="com.team11.bikeshare.AccessCode"/>
         <activity android:name="com.team11.bikeshare.Confirm"/>
         <activity android:name="com.team11.bikeshare.GotBikeRevoke"/>
+        <activity android:name="com.team11.bikeshare.Feedback"/>
         <meta-data
    		android:name="com.google.android.maps.v2.API_KEY"
    		android:value="AIzaSyBtmd5P9ceNadVKVo_4M4sO4EyN3V4alKw" />     
