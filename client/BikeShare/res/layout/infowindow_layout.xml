@@ -29,7 +29,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/endtime"
             android:layout_marginLeft="68dp"
-            android:text="Click to Confirm" 
+            android:text="Click to Select" 
             android:background="@drawable/buttonshape"
         	android:layout_marginTop="15dp" />
         

@@ -79,7 +79,7 @@ public class ShowBikeLocations extends CommonMenu implements OnMarkerClickListen
         Gson gson1 = builder.create();
         String str=gson1.toJson(coordinates);
 		params.put("coordinates", str);
-		client.get("http://10.0.0.9:8080/locations",params, new AsyncHttpResponseHandler(){
+		client.get("http://10.185.250.134:8080/locations",params, new AsyncHttpResponseHandler(){
 			public void onSuccess(int statuscode,String response)
 			{
 				Gson gson = new Gson();
@@ -191,7 +191,7 @@ public class ShowBikeLocations extends CommonMenu implements OnMarkerClickListen
         	AsyncHttpClient client = new AsyncHttpClient();
         	RequestParams params=new RequestParams();
         	params.put("bikeid", marker.getTitle());
-        	client.get("http://10.0.0.9:8080/bike",params, new AsyncHttpResponseHandler(){
+        	client.get("http://10.185.250.134:8080/bike",params, new AsyncHttpResponseHandler(){
     			public void onSuccess(int statuscode,String response)
     			{
     				System.out.println("in custom marker");
@@ -224,27 +224,10 @@ public class ShowBikeLocations extends CommonMenu implements OnMarkerClickListen
 	@Override
 	public void onInfoWindowClick(Marker marker) {
 		// TODO Auto-generated method stub
-		AsyncHttpClient client = new AsyncHttpClient();
-    	RequestParams params=new RequestParams();
-    	params.put("bike_id", marker.getTitle());
-    	GlobalClass gv=(GlobalClass) getApplicationContext();
-    	params.put("user_id", gv.getUsername());
-    	client.post("http://10.0.0.9:8080/confirm_rent",params, new AsyncHttpResponseHandler(){
-			public void onSuccess(int statuscode,String response)
-			{
-				
-	            if(response=="success")
-	            {
-	            	Toast.makeText(getApplicationContext(), "confirmed", Toast.LENGTH_SHORT);
-	            }
-   			}
-				
-			
-		});
-		  Toast.makeText(getBaseContext(), 
-				    "Info Window clicked@" + marker.getTitle(), 
-				    Toast.LENGTH_SHORT).show();
-
+		
+		Intent in=new Intent().setClass(getApplicationContext(), Confirm.class);
+		in.putExtra("bike_id", marker.getTitle());
+		startActivity(in);
 		
 	}
 }
