@@ -77,6 +77,7 @@ public class GotBikeRevoke extends FragmentActivity {
 				endtime.setText("End Time : "+formatter.format(ecal.getTime()));
 				starttime.setText(formatter.format(scal.getTime()));
 				endtime.setText(formatter.format(ecal.getTime()));
+				user_id_renter=bc.getRentdetails().getUser_id_renter();
 				
 				
 			}});
