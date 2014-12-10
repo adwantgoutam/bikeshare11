@@ -76,7 +76,7 @@ public class BikesDAO extends BikeShareDB{
 	
 public List<Bikes> getAllBikes(String uid) throws UnknownHostException
 	{
-		Bikes b=new Bikes();
+		Bikes b=null;
 		MongoClientURI uri  = new MongoClientURI("mongodb://bikeshare:bikeshare@ds051160.mongolab.com:51160/bikeshare"); 
 		MongoClient client = new MongoClient(uri);
 		DB db = client.getDB("bikeshare");
@@ -86,6 +86,7 @@ public List<Bikes> getAllBikes(String uid) throws UnknownHostException
 		DBCursor cursor = coll.find(query);
 		try {
 			   while(cursor.hasNext() ) {
+			   	   b=new Bikes();
 				   DBObject obj = cursor.next();
 				   b.setBike_id(String.valueOf(obj.get("bike_id")));
 				   b.setIsBikeAvailable(String.valueOf(obj.get("isBikeAvailable")));
