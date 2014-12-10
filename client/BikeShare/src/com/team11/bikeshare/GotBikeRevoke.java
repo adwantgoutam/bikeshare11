@@ -94,7 +94,8 @@ public class GotBikeRevoke extends FragmentActivity {
 	    			
 	    			public void onSuccess(int statuscode,String response)
 	    			{
-	    				Intent in2 = new Intent().setClass(getApplicationContext(), Home.class);
+	    				Intent in2 = new Intent().setClass(getApplicationContext(), Feedback.class);
+	    				in2.putExtra("user_id_renter",user_id_renter);
 	    				startActivity(in2);
 	    			}
 	    		}
