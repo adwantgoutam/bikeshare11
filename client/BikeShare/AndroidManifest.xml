@@ -52,7 +52,12 @@
         <activity android:name="com.team11.bikeshare.Confirm"/>
         <activity android:name="com.team11.bikeshare.GotBikeRevoke"/>
         <activity android:name="com.team11.bikeshare.Feedback"/>
-
+        <meta-data
+   		android:name="com.google.android.maps.v2.API_KEY"
+   		android:value="AIzaSyBtmd5P9ceNadVKVo_4M4sO4EyN3V4alKw" />     
+   		   <meta-data
+    	android:name="com.google.android.gms.version"
+    	android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

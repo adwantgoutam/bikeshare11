@@ -47,7 +47,7 @@ public class MyBikes extends CommonMenu {
 		GlobalClass globalVariable=(GlobalClass) getApplicationContext();
 		params.put("user_id",globalVariable.getUsername());
 		System.out.println(globalVariable.getUsername());
-		client.get("http://192.168.1.108:8080/allbikes",params, new AsyncHttpResponseHandler(){
+		client.get("http://10.185.237.62:8080/allbikes",params, new AsyncHttpResponseHandler(){
 			public void onSuccess(int statuscode,String response)
 			{
 				Gson gson = new Gson();

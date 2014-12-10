@@ -47,7 +47,7 @@ public class AccessCode extends CommonMenu{
 		params.put("bikeid", bikeid);
 		
 		AsyncHttpClient client = new AsyncHttpClient();
-		client.get("http://192.168.1.108:8080/bike",params, new AsyncHttpResponseHandler(){
+		client.get("http://10.185.237.62:8080/bike",params, new AsyncHttpResponseHandler(){
 			
 			public void onSuccess(int statuscode,String response)
 			{

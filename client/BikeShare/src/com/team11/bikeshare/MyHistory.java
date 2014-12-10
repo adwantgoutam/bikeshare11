@@ -57,7 +57,7 @@ public class MyHistory extends CommonMenu{
 		System.out.println("Param user_id: " + params);
 		
 		AsyncHttpClient client = new AsyncHttpClient();
-		client.get("http://192.168.1.108:8080/get_my_history",params,new AsyncHttpResponseHandler(){
+		client.get("http://10.185.237.62:8080/get_my_history",params,new AsyncHttpResponseHandler(){
 			public void onSuccess(int statuscode,String response)
 			{	
 				Gson gson = new Gson();

@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#372c24"
-        android:layout_marginBottom="25dip"
         android:text="@+id/uname"/>
     
 
@@ -106,7 +105,7 @@
         android:id="@+id/update"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dip"
+        android:layout_marginTop="10dip"
         android:text="Update" 
 		android:background="@drawable/buttonshape"/>
 	

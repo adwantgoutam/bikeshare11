@@ -93,7 +93,7 @@ public class Registration extends Activity{
             params.put("userContext", str);
     		//DataObject obj = gson.fromJson(br, DataObject.class);
 
-    		client.post("http://192.168.1.108:8080/register_user",params, new AsyncHttpResponseHandler(){
+    		client.post("http://10.185.237.62:8080/register_user",params, new AsyncHttpResponseHandler(){
             //client.post("http://192.168.2.9:8080/register_user",params, new AsyncHttpResponseHandler(){
     			
     			public void onSuccess(int statuscode,String response)

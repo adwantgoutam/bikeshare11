@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.team11.beans.GlobalClass;
 
-public class UpdateAccount extends CommonMenu{
+public class UpdateAccount extends Activity{
 	
 	private TextView user_name;
 	private TextView paswd;
@@ -81,7 +81,7 @@ public class UpdateAccount extends CommonMenu{
            
             
             AsyncHttpClient client = new AsyncHttpClient();
-    		client.post("http://192.168.1.108:8080/edit_my_account",params,new AsyncHttpResponseHandler(){
+    		client.post("http://10.185.237.62:8080/edit_my_account",params,new AsyncHttpResponseHandler(){
     			public void onSuccess(int statuscode,String response)
     			{	
     				if(response.contains("Successfully updated"))

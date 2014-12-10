@@ -66,7 +66,7 @@ public class RegisterBike extends CommonMenu{
             System.out.println("Here 4");
     		//DataObject obj = gson.fromJson(br, DataObject.class);
             System.out.println("Here 5");
-    		client.post("http://192.168.1.108:8080/register_bike",params, new AsyncHttpResponseHandler(){
+    		client.post("http://10.185.237.62:8080/register_bike",params, new AsyncHttpResponseHandler(){
             //client.post("http://192.168.2.9:8080/register_user",params, new AsyncHttpResponseHandler(){
     			
     			public void onSuccess(int statuscode,String response)

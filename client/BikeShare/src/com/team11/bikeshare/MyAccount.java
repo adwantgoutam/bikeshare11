@@ -49,7 +49,7 @@ public class MyAccount extends CommonMenu{
 		params.put("user_name", user_name_str);
 		
 		AsyncHttpClient client = new AsyncHttpClient();
-		client.get("http://192.168.1.108:8080/my_account",params,new AsyncHttpResponseHandler(){
+		client.get("http://10.185.237.62:8080/my_account",params,new AsyncHttpResponseHandler(){
 			public void onSuccess(int statuscode,String response)
 			{	
 				
