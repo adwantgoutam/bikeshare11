@@ -46,7 +46,7 @@ public class Registration extends Activity{
 		bikeName=(EditText)findViewById(R.id.bikeName);
 		bikeModel=(EditText)findViewById(R.id.bikeModel);
 		checkbox = (CheckBox) findViewById(R.id.isBike);
-		SSN = (EditText)findViewById(R.id.SSN);
+		//SSN = (EditText)findViewById(R.id.SSN);
 		checkbox.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -93,7 +93,7 @@ public class Registration extends Activity{
             params.put("userContext", str);
     		//DataObject obj = gson.fromJson(br, DataObject.class);
 
-    		client.post("http://10.0.0.23:8080/register_user",params, new AsyncHttpResponseHandler(){
+    		client.post("http://10.185.237.62:8080/register_user",params, new AsyncHttpResponseHandler(){
             //client.post("http://192.168.2.9:8080/register_user",params, new AsyncHttpResponseHandler(){
     			
     			public void onSuccess(int statuscode,String response)

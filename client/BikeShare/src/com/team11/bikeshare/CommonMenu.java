@@ -21,10 +21,12 @@ public boolean onOptionsItemSelected(MenuItem item) {
         startActivity(in);
         return true;
     case R.id.myhistory:
-        Toast.makeText(getApplicationContext(), "you've been helped more",
-                Toast.LENGTH_SHORT).show();
+    	Intent historyIntent = new Intent().setClass(getApplicationContext(), MyHistory.class);
+        startActivity(historyIntent);
         return true;
     case R.id.myaccount:
+    	Intent myAccountIntent = new Intent().setClass(getApplicationContext(), MyAccount.class);
+        startActivity(myAccountIntent);
         return true;
     default:
         return false;
