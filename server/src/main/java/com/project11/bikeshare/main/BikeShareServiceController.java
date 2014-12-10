@@ -18,6 +18,7 @@ import com.project11.bikeshare.Beans.Bikes;
 import com.project11.bikeshare.Beans.BikesList;
 import com.project11.bikeshare.Beans.Coordinates;
 import com.project11.bikeshare.Beans.RentDetails;
+import com.project11.bikeshare.Beans.RentHistory;
 import com.project11.bikeshare.Beans.User;
 import com.project11.bikeshare.Beans.UserContext;
 import com.project11.bikeshare.DBImpl.BikeConfirmationDAO;
@@ -124,9 +125,13 @@ public class BikeShareServiceController {
 	    //Used for my history
     @RequestMapping(value="/get_my_history",method = RequestMethod.GET)
     public String getMyHistory(@RequestParam String user_id) {
+        RentHistory renthistory = new RentHistory();
         List<RentDetails> rentDetailsList = new MyHistoryService().getMyHistory(user_id);
-        Gson gson = new Gson();
-        String rentDetailsListJson = gson.toJson(rentDetailsList);
+        renthistory.setRent_history(rentDetailsList);
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        String rentDetailsListJson = gson.toJson(renthistory);
+        System.out.println(rentDetailsListJson);
         return rentDetailsListJson;
     }
     
