@@ -112,7 +112,7 @@ public class Feedback extends Activity {
                 params.put("user_id_renter","12345");
                 
                 //client.post("http://192.168.2.9:8080/feedback",params, new AsyncHttpResponseHandler(){
-                client.post("http://10.0.0.23:8080/feedback",params, new AsyncHttpResponseHandler(){
+                client.post("http://192.168.1.108:8080/feedback",params, new AsyncHttpResponseHandler(){
                 
         			
         			public void onSuccess(int statuscode,String response)

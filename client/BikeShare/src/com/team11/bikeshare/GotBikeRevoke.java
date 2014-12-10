@@ -60,7 +60,7 @@ public class GotBikeRevoke extends FragmentActivity {
 		}
 		
 		params.put("bikeid",bikeid);
-		client.get("http://10.185.237.62:8080/getBike",params, new AsyncHttpResponseHandler(){
+		client.get("http://192.168.1.108.62:8080/getBike",params, new AsyncHttpResponseHandler(){
 			public void onSuccess(int statuscode,String response)
 			{
 				Gson gson = new Gson();

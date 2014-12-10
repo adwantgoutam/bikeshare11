@@ -58,7 +58,7 @@ public class Confirm extends CommonMenu {
 		params.put("bikeid", bikeid);
 		
 		AsyncHttpClient client = new AsyncHttpClient();
-		client.get("http://10.185.237.62:8080/bike",params, new AsyncHttpResponseHandler(){
+		client.get("http://192.168.1.108:8080/bike",params, new AsyncHttpResponseHandler(){
 			public void onSuccess(int statuscode,String response)
 			{
 				if(response.contains("bike_id"))
@@ -95,7 +95,7 @@ public class Confirm extends CommonMenu {
         	params.put("bike_id", bikeid);
         	params.put("user_id", userid);
         	AsyncHttpClient client = new AsyncHttpClient();
-    		client.post("http://10.185.237.62:8080/confirm_rent",params, new AsyncHttpResponseHandler(){
+    		client.post("http://192.168.1.108:8080/confirm_rent",params, new AsyncHttpResponseHandler(){
     			public void onSuccess(int statuscode,String response)
     			{
     				System.out.println(response);

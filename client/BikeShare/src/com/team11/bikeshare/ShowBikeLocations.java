@@ -79,7 +79,7 @@ public class ShowBikeLocations extends CommonMenu implements OnMarkerClickListen
         Gson gson1 = builder.create();
         String str=gson1.toJson(coordinates);
 		params.put("coordinates", str);
-		client.get("http://10.185.237.62:8080/locations",params, new AsyncHttpResponseHandler(){
+		client.get("http://192.168.1.108:8080/locations",params, new AsyncHttpResponseHandler(){
 			public void onSuccess(int statuscode,String response)
 			{
 				Gson gson = new Gson();
@@ -191,7 +191,7 @@ public class ShowBikeLocations extends CommonMenu implements OnMarkerClickListen
         	AsyncHttpClient client = new AsyncHttpClient();
         	RequestParams params=new RequestParams();
         	params.put("bikeid", marker.getTitle());
-        	client.get("http://10.185.237.62:8080/bike",params, new AsyncHttpResponseHandler(){
+        	client.get("http://192.168.1.108:8080/bike",params, new AsyncHttpResponseHandler(){
     			public void onSuccess(int statuscode,String response)
     			{
     				System.out.println("in custom marker");
