@@ -46,7 +46,7 @@ public class Registration extends Activity{
 		bikeName=(EditText)findViewById(R.id.bikeName);
 		bikeModel=(EditText)findViewById(R.id.bikeModel);
 		checkbox = (CheckBox) findViewById(R.id.isBike);
-		//SSN = (EditText)findViewById(R.id.SSN);
+		SSN = (EditText)findViewById(R.id.SSN);
 		checkbox.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
