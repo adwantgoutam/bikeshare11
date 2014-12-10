@@ -92,8 +92,8 @@ public class Confirm extends CommonMenu {
         public void onClick(View v) {
         	System.out.println("confirm clicked");
         	RequestParams params=new RequestParams();
-        	params.put("bike_id", "bname");
-        	params.put("user_id", "harish");
+        	params.put("bike_id", bikeid);
+        	params.put("user_id", userid);
         	AsyncHttpClient client = new AsyncHttpClient();
     		client.post("http://10.185.237.62:8080/confirm_rent",params, new AsyncHttpResponseHandler(){
     			public void onSuccess(int statuscode,String response)
@@ -102,7 +102,7 @@ public class Confirm extends CommonMenu {
     				if(response.contains("success"))
     				{
     					Intent in = new Intent().setClass(getApplicationContext(), AccessCode.class);
-    		    	    in.putExtra("bike_id", "bname");
+    		    	    in.putExtra("bikeid", bikeid);
     		    	    startActivity(in);
     				}
     				else
@@ -129,7 +129,7 @@ public class Confirm extends CommonMenu {
 			Bundle extras = getIntent().getExtras();
 		    if (extras != null)
 		    {
-		    	bikeid = extras.getString("bike_id");
+		    	bikeid = extras.getString("bikeid");
 		    }
 		    else
 		    {
@@ -137,7 +137,7 @@ public class Confirm extends CommonMenu {
 		    }
 		}
 		else{
-			bikeid= (String) savedInstanceState.getSerializable("bike_id");
+			bikeid= (String) savedInstanceState.getSerializable("bikeid");
 		}
 		return bikeid;
 	}

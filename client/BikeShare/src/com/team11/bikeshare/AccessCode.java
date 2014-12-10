@@ -88,7 +88,7 @@ public class AccessCode extends CommonMenu{
 				Bundle extras = getIntent().getExtras();
 			    if (extras != null)
 			    {
-			    	bikeid = extras.getString("bike_id");
+			    	bikeid = extras.getString("bikeid");
 			    }
 			    else
 			    {
@@ -96,7 +96,7 @@ public class AccessCode extends CommonMenu{
 			    }
 			}
 			else{
-				bikeid= (String) savedInstanceState.getSerializable("bike_id");
+				bikeid= (String) savedInstanceState.getSerializable("bikeid");
 			}
 			return bikeid;
 		}
