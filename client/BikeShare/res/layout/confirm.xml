@@ -6,7 +6,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical" 
+		android:background="@drawable/bikeshape">
 
         <ImageView
             android:id="@+id/imageView1"
@@ -85,7 +86,8 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginTop="10dip"
-	        android:text="Confirm" />
+	        android:text="Confirm" 
+			android:background="@drawable/buttonshape"/>
 
 
     </LinearLayout>

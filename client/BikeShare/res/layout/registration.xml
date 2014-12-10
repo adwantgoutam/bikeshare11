@@ -98,7 +98,7 @@
         
     <Button
         android:id="@+id/register1"
-         android:background="@drawable/buttonshape"
+        android:background="@drawable/buttonshape"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/isBike"

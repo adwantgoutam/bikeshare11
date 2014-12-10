@@ -4,7 +4,9 @@
           android:orientation="vertical"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:padding="10dip">
+          android:padding="10dip"
+		  android:background="@drawable/bikeshape">
+
           
 	<!--  User Name  -->
     <TextView 
@@ -29,10 +31,14 @@
         android:id="@+id/email1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dip"
-        android:layout_marginBottom="20dip"
+        
         android:singleLine="true"
-        android:text="@+id/email1"/>
+        android:text="@+id/email1"
+		
+        android:textColorHint="#7C7B7C"
+		android:layout_marginTop="14dp"
+        android:layout_marginBottom="4dp"
+		/>
     
     <!--  Password  -->
     <TextView
@@ -49,7 +55,9 @@
         android:layout_marginTop="5dip"
         android:layout_marginBottom="20dip"
         android:singleLine="true"
-        android:text="@+id/paswd1"/>
+        android:text="@+id/paswd1"
+		android:textColorHint="#7C7B7C"
+		/>
     
     <!--  Mobile Number  -->
     <TextView
@@ -66,7 +74,8 @@
         android:layout_marginTop="5dip"
         android:layout_marginBottom="20dip"
         android:singleLine="true"
-        android:text="@+id/mobile1"/>
+        android:text="@+id/mobile1"
+		android:textColorHint="#7C7B7C"/>
     
 
      
@@ -87,7 +96,8 @@
         android:layout_marginTop="5dip"
         android:layout_marginBottom="20dip"
         android:singleLine="true"
-        android:text="@+id/ssn1"/>
+        android:text="@+id/ssn1"
+		android:textColorHint="#7C7B7C"/>
     
     
     <!-- update button -->
@@ -96,6 +106,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dip"
-        android:text="Update" />
+        android:text="Update" 
+		android:background="@drawable/buttonshape"/>
 	
 </LinearLayout>
