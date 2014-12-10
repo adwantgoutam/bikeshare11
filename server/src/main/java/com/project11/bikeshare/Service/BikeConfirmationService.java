@@ -115,11 +115,11 @@ public class BikeConfirmationService {
 		StringBuffer b = new StringBuffer("");
 		b.append("Access Code :"+bike.getAccessCode());
 		b.append("\n");
-		b.append("Start Time :"+bike.getStart_time());
+		b.append("Start Time :"+new Date(Long.parseLong(bike.getStart_time())));
 		b.append("\n");
-		b.append("End Time :"+bike.getEnd_time());
+		b.append("End Time :"+new Date(Long.parseLong(bike.getEnd_time())));
 		b.append("\n");
-		b.append("Enter Custom Message here");
+		b.append("Thanks for using our service please return the bike on time.");
 		
 		try {
 			twilioMessage.sendMessage(user.getMobile_number(),b.toString());
