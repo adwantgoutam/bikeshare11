@@ -105,11 +105,13 @@ public class BikeShareServiceController {
 
 	@RequestMapping(value="/bike",method = RequestMethod.GET)
 	 public String findBike(@RequestParam String bikeid) throws UnknownHostException
-	{
+	{	
+			System.out.println("11"+bikeid);
 			Bikes bike=new BikeConfirmationDAO().findBike(bikeid);
 			GsonBuilder builder = new GsonBuilder();
 	        Gson gson = builder.create();
 	        String str=gson.toJson(bike);
+	        System.out.println(str);
 			return str;
 	}
     

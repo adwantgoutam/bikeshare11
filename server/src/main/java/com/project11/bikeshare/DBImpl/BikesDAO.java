@@ -123,7 +123,7 @@ public List<Bikes> getAllBikes(String uid) throws UnknownHostException
 				   sort.put("rent_details_id",-1);
 				   
 				   BasicDBObject query1 = new BasicDBObject("bike_id",bid);
-				   DBCursor cursor1 = coll1.find(query1).sort(sort).limit(1);
+				   DBCursor cursor1 = coll1.find(query1);
 				      while(cursor1.hasNext() ) {	
 						   DBObject obj1 = cursor1.next();
 						   rd.setReceived(String.valueOf(obj1.get("received")));

@@ -39,7 +39,7 @@ public class BikeConfirmationService {
 			returnString = "fail";
 			sendUserRefusalTextMessage(user);
 		}
-		
+		System.out.println(returnString);
 		return returnString;
 		
 		
